@@ -11,10 +11,10 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		ACF56C622FE4318D006858BA /* Exceptions for "AIChat" folder in "AIChat" target */ = {
+		ACC6C50B2FE465120009CB86 /* Exceptions for "AIChat" folder in "AIChat" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Resources/Info.plist,
 			);
 			target = ACF56C302FE42993006858BA /* AIChat */;
 		};
@@ -24,7 +24,7 @@
 		ACF56C332FE42993006858BA /* AIChat */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				ACF56C622FE4318D006858BA /* Exceptions for "AIChat" folder in "AIChat" target */,
+				ACC6C50B2FE465120009CB86 /* Exceptions for "AIChat" folder in "AIChat" target */,
 			);
 			path = AIChat;
 			sourceTree = "<group>";
@@ -198,6 +198,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -255,6 +256,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -269,7 +271,7 @@
 				DEVELOPMENT_TEAM = 7Z457JRAZT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AIChat/Info.plist;
+				INFOPLIST_FILE = AIChat/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -306,7 +308,7 @@
 				DEVELOPMENT_TEAM = 7Z457JRAZT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AIChat/Info.plist;
+				INFOPLIST_FILE = AIChat/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
