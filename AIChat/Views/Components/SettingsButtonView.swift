@@ -7,8 +7,15 @@
 
 import SwiftUI
 
+// MARK: - SettingsButtonView
+
 struct SettingsButtonView: View {
+
+    // MARK: - Properties
+
     let action: (() -> Void)? = nil
+
+    // MARK: - Body
 
     var body: some View {
         Button {
@@ -25,6 +32,8 @@ struct SettingsButtonView: View {
         .clipShape(.circle)
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     SettingsButtonView()
