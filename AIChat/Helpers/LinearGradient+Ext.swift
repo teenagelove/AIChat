@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: - LinearGradient
+
 extension LinearGradient {
     static let primaryGradient = LinearGradient(
         colors: [.gradientBlue, .gradientPink],
