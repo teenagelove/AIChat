@@ -11,6 +11,10 @@ import SwiftUI
 
 struct MainView: View {
 
+    // MARK: - Dependencies
+
+    @EnvironmentObject private var coordinator: Coordinator
+
     // MARK: - Body
 
     var body: some View {
@@ -39,11 +43,14 @@ private extension MainView {
         VStack(spacing: 24) {
             header
 
-            ChatInputView(action: nil)
+            ChatInputView {
+                coordinator.navigate(to: .chat)
+            }
 
             Spacer()
         }
         .padding(.top, 46)
+        .padding(.horizontal, 16)
     }
 
     var header: some View {
@@ -65,4 +72,5 @@ private extension MainView {
 
 #Preview {
     MainView()
+        .environmentObject(Coordinator())
 }

@@ -63,6 +63,8 @@ struct AIChatApp: App {
             MainView()
         case .paywall:
             PaywallView()
+        case .chat:
+            ChatView()
         }
     }
 }

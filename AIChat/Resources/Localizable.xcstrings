@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    " for anything" : {
+
+    },
     "ask-anything-placeholder" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12,6 +15,72 @@
         }
       }
     },
+    "chat-ai-assistant" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI Assistant"
+          }
+        }
+      }
+    },
+    "chat-ask-anything-placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ask anything..."
+          }
+        }
+      }
+    },
+    "chat-center-subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ask questions, get answers, and explore ideas\nin seconds"
+          }
+        }
+      }
+    },
+    "chat-center-title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your {gradient}AI assistant{/gradient} for anything"
+          }
+        }
+      }
+    },
+    "chat-date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "26.03.2026"
+          }
+        }
+      }
+    },
+    "chat-title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI Chat"
+          }
+        }
+      }
+    },
     "error-button-title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -19,6 +88,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Try Again"
+          }
+        }
+      }
+    },
+    "legal-done" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      }
+    },
+    "legal-privacy-policy-text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Policy\n\nLast updated: June 19, 2026\n\n1. Information We Collect\nWe collect information you provide directly, including account information and usage data.\n\n2. How We Use Information\nWe use the information to provide, maintain, and improve our services, and to communicate with you.\n\n3. Data Sharing\nWe do not sell your personal information. We may share data with service providers who assist in operating our application.\n\n4. Data Security\nWe implement appropriate technical and organizational measures to protect your personal data.\n\n5. Your Rights\nYou have the right to access, correct, or delete your personal information.\n\n6. Contact Us\nIf you have questions about this policy, please contact us at support@app.com."
+          }
+        }
+      }
+    },
+    "legal-terms-of-use-text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms of Use\n\nLast updated: June 19, 2026\n\n1. Acceptance of Terms\nBy accessing and using this application, you accept and agree to be bound by the terms and provision of this agreement.\n\n2. Subscription Service\nThis app offers auto-renewable subscription plans. Payment will be charged to your iTunes account at confirmation of purchase. Subscriptions automatically renew unless auto-renew is turned off at least 24-hours before the end of the current period.\n\n3. Free Trial\nIf you offer a free trial, any unused portion of a free trial period will be forfeited when the user purchases a subscription.\n\n4. Cancellation\nYou can cancel your subscription at any time through your iTunes account settings. Cancellation takes effect at the end of the current billing cycle.\n\n5. Refunds\nYou can request a refund through the App Store. Refund requests are handled by Apple and subject to their policies.\n\n6. Changes to Terms\nWe reserve the right to modify these terms at any time. Changes will be effective immediately upon posting."
           }
         }
       }
@@ -246,46 +348,13 @@
     "Restore Purchases" : {
 
     },
-    "legal-terms-of-use-text" : {
+    "restore-failure" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terms of Use\n\nLast updated: June 19, 2026\n\n1. Acceptance of Terms\nBy accessing and using this application, you accept and agree to be bound by the terms and provision of this agreement.\n\n2. Subscription Service\nThis app offers auto-renewable subscription plans. Payment will be charged to your iTunes account at confirmation of purchase. Subscriptions automatically renew unless auto-renew is turned off at least 24-hours before the end of the current period.\n\n3. Free Trial\nIf you offer a free trial, any unused portion of a free trial period will be forfeited when the user purchases a subscription.\n\n4. Cancellation\nYou can cancel your subscription at any time through your iTunes account settings. Cancellation takes effect at the end of the current billing cycle.\n\n5. Refunds\nYou can request a refund through the App Store. Refund requests are handled by Apple and subject to their policies.\n\n6. Changes to Terms\nWe reserve the right to modify these terms at any time. Changes will be effective immediately upon posting."
-          }
-        }
-      }
-    },
-    "legal-privacy-policy-text" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Privacy Policy\n\nLast updated: June 19, 2026\n\n1. Information We Collect\nWe collect information you provide directly, including account information and usage data.\n\n2. How We Use Information\nWe use the information to provide, maintain, and improve our services, and to communicate with you.\n\n3. Data Sharing\nWe do not sell your personal information. We may share data with service providers who assist in operating our application.\n\n4. Data Security\nWe implement appropriate technical and organizational measures to protect your personal data.\n\n5. Your Rights\nYou have the right to access, correct, or delete your personal information.\n\n6. Contact Us\nIf you have questions about this policy, please contact us at support@app.com."
-          }
-        }
-      }
-    },
-    "legal-done" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Done"
-          }
-        }
-      }
-    },
-    "welcome-main-text" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your AI tools, \nready to go"
+            "value" : "No active subscription found to restore."
           }
         }
       }
@@ -301,16 +370,19 @@
         }
       }
     },
-    "restore-failure" : {
+    "welcome-main-text" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No active subscription found to restore."
+            "value" : "Your AI tools, \nready to go"
           }
         }
       }
+    },
+    "Your " : {
+
     }
   },
   "version" : "1.2"
