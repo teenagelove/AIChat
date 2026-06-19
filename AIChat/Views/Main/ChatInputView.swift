@@ -46,8 +46,5 @@ struct ChatInputView: View {
 // MARK: - Preview
 
 #Preview {
-    ZStack {
-        Color.background
-        ChatInputView(action: nil)
-    }
+    ChatInputView(action: nil)
 }
