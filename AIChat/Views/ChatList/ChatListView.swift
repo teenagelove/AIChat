@@ -71,9 +71,9 @@ private extension ChatListView {
     // MARK: - Chat List
 
     var chatList: some View {
-        List(viewModel.groupedChats) { section in
-            Section(section.key) {
-                ForEach(section.value) { chat in
+        List(viewModel.sections) { section in
+            Section(section.title) {
+                ForEach(section.chats) { chat in
                     ChatHistoryRowView(
                         title: chat.title ?? String(localized: .chatListUntitled),
                         time: chat.date?.formatted(date: .omitted, time: .shortened) ?? ""

@@ -39,28 +39,17 @@ final class ChatListViewModel: ObservableObject {
 
     // MARK: - Computed
 
-    var groupedChats: [(key: String, value: [DolaChat])] {
+    var sections: [ChatSection] {
         guard case .loaded(let chats) = state else { return [] }
-        let calendar = Calendar.current
-        let grouped = Dictionary(grouping: chats) { chat in
-            guard let date = chat.date else { return "Unknown" }
-            if calendar.isDateInToday(date) {
-                return "Today"
-            } else if calendar.isDateInYesterday(date) {
-                return "Yesterday"
-            } else {
-                let formatter = DateFormatter()
-                formatter.dateFormat = "MMMM d"
-                return formatter.string(from: date)
+        let grouped = Dictionary(grouping: chats) { $0.date?.chatGroupKey ?? "Unknown" }
+        return grouped
+            .map { ChatSection(title: $0.key, chats: $0.value) }
+            .sorted { lhs, rhs in
+                let order = ["Today", "Yesterday"]
+                let lhsIndex = order.firstIndex(of: lhs.title) ?? order.count
+                let rhsIndex = order.firstIndex(of: rhs.title) ?? order.count
+                return lhsIndex != rhsIndex ? lhsIndex < rhsIndex : lhs.title > rhs.title
             }
-        }
-        let order = ["Today", "Yesterday"]
-        return grouped.sorted { lhs, rhs in
-            let lhsIndex = order.firstIndex(of: lhs.key) ?? order.count
-            let rhsIndex = order.firstIndex(of: rhs.key) ?? order.count
-            if lhsIndex != rhsIndex { return lhsIndex < rhsIndex }
-            return lhs.key > rhs.key
-        }
     }
 
     // MARK: - Actions
