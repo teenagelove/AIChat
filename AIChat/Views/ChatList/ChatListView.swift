@@ -57,7 +57,6 @@ private extension ChatListView {
         switch viewModel.state {
         case .idle, .loading:
             ProgressView()
-                .tint(.white)
         case .loaded:
             chatList
         case .empty:
@@ -72,23 +71,20 @@ private extension ChatListView {
     // MARK: - Chat List
 
     var chatList: some View {
-        List(viewModel.groupedChats, id: \.key) { section in
+        List(viewModel.groupedChats) { section in
             Section(section.key) {
                 ForEach(section.value) { chat in
                     ChatHistoryRowView(
-                        title: chat.title ?? String(
-                            localized: .chatListUntitled
-                        ),
+                        title: chat.title ?? String(localized: .chatListUntitled),
                         time: chat.date?.formatted(date: .omitted, time: .shortened) ?? ""
                     )
-                    .listRowBackground(Color.card.opacity(0.5))
+                    .listRowBackground(Color.clear)
                     .listRowSeparator(.hidden)
                 }
             }
             .headerProminence(.increased)
         }
         .listStyle(.plain)
-        .scrollContentBackground(.hidden)
     }
 }
 
