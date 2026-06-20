@@ -21,6 +21,16 @@ final class ChatViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var toast: ToastState?
 
+    // MARK: - Dependencies
+
+    private let chatService: any ChatServiceProtocol
+
+    // MARK: - Init
+
+    init(chatService: any ChatServiceProtocol) {
+        self.chatService = chatService
+    }
+
     // MARK: - Computed
 
     var hasText: Bool {

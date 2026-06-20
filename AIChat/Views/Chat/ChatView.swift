@@ -14,7 +14,7 @@ struct ChatView: View {
     // MARK: - Dependencies
 
     @EnvironmentObject private var coordinator: Coordinator
-    @StateObject private var viewModel = ChatViewModel()
+    @StateObject private var viewModel = ChatViewModel(chatService: ChatService())
     @FocusState private var isInputFocused: Bool
 
     // MARK: - Body

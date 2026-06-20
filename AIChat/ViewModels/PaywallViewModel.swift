@@ -32,11 +32,11 @@ final class PaywallViewModel: ObservableObject {
 
     // MARK: - Dependencies
 
-    private let subscriptionService: SubscriptionService
+    private let subscriptionService: any SubscriptionServiceProtocol
 
     // MARK: - Init
 
-    init(subscriptionService: SubscriptionService) {
+    init(subscriptionService: any SubscriptionServiceProtocol) {
         self.subscriptionService = subscriptionService
     }
 
