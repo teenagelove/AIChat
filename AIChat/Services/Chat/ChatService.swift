@@ -16,29 +16,7 @@ final class ChatService: ChatServiceProtocol {
     private let session = URLSession.shared
     private let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom { decoder in
-            let container = try decoder.singleValueContainer()
-            let string = try container.decode(String.self)
-            let formatter = ISO8601DateFormatter()
-            formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-            if let date = formatter.date(from: string) {
-                return date
-            }
-            formatter.formatOptions = [.withInternetDateTime]
-            if let date = formatter.date(from: string) {
-                return date
-            }
-            let fallback = DateFormatter()
-            fallback.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-            fallback.locale = Locale(identifier: "en_US_POSIX")
-            if let date = fallback.date(from: string) {
-                return date
-            }
-            throw DecodingError.dataCorruptedError(
-                in: container,
-                debugDescription: "Invalid date format: \(string)"
-            )
-        }
+        decoder.dateDecodingStrategy = .iso8601
         return decoder
     }()
 

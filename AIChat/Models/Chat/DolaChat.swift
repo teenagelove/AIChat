@@ -12,10 +12,16 @@ import Foundation
 struct DolaChat: Decodable, Identifiable {
     let chatId: String
     let title: String?
-    let updatedAt: Date
+    let updatedAt: String
     let lastMessagePreview: String?
 
     var id: String { chatId }
+
+    var date: Date? {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return formatter.date(from: updatedAt)
+    }
 
     enum CodingKeys: String, CodingKey {
         case chatId = "chat_id"
