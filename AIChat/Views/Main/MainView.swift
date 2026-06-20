@@ -15,16 +15,23 @@ struct MainView: View {
 
     @EnvironmentObject private var coordinator: Coordinator
 
+    @State private var isShowingNotImplemented = false
+
     // MARK: - Body
 
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack {
             BackgroundView()
 
             content
         }
         .overlay(alignment: .topTrailing) {
             settingsButton
+        }
+        .alert(.notImplementedTitle, isPresented: $isShowingNotImplemented) {
+            Button(.ok, role: .cancel) {}
+        } message: {
+            Text(.notImplementedMessage)
         }
     }
 }
@@ -35,21 +42,33 @@ private extension MainView {
 
     var settingsButton: some View {
         SettingsButtonView()
+            .onTapGesture { isShowingNotImplemented = true }
             .padding(.top, 16)
             .padding(.trailing, 16)
     }
 
     var content: some View {
-        VStack(spacing: 24) {
-            header
+        VStack(spacing: 40) {
+            VStack(spacing: 24) {
+                header
 
-            ChatInputView {
-                coordinator.navigate(to: .chat)
+                ChatInputView {
+                    coordinator.navigate(to: .chat)
+                }
             }
 
-            Spacer()
+            HStack(alignment: .top, spacing: 8) {
+                VideoGenCardView()
+
+                VStack(spacing: 8) {
+                    ImproveCardView()
+                        .onTapGesture { isShowingNotImplemented = true }
+
+                    SummarizeCardView()
+                        .onTapGesture { isShowingNotImplemented = true }
+                }
+            }
         }
-        .padding(.top, 46)
         .padding(.horizontal, 16)
     }
 

@@ -12,6 +12,17 @@
         }
       }
     },
+    "animate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animate"
+          }
+        }
+      }
+    },
     "ask-anything-placeholder" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -122,17 +133,6 @@
         }
       }
     },
-    "chat-list-title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "AI Chat History"
-          }
-        }
-      }
-    },
     "chat-list-retry" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -140,6 +140,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retry"
+          }
+        }
+      }
+    },
+    "chat-list-title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI Chat History"
           }
         }
       }
@@ -188,6 +199,39 @@
         }
       }
     },
+    "fix-grammar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fix grammar"
+          }
+        }
+      }
+    },
+    "improve-text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fix & Improve Writing"
+          }
+        }
+      }
+    },
+    "key-points" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Key points"
+          }
+        }
+      }
+    },
     "legal-done" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -195,6 +239,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Done"
+          }
+        }
+      }
+    },
+    "not-implemented-message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This feature is coming soon."
+          }
+        }
+      }
+    },
+    "not-implemented-title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coming Soon"
+          }
+        }
+      }
+    },
+    "ok" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
           }
         }
       }
@@ -441,6 +518,17 @@
         }
       }
     },
+    "ready-in-seconds" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ready in seconds"
+          }
+        }
+      }
+    },
     "Restore Purchases" : {
 
     },
@@ -462,6 +550,61 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Subscription restored successfully."
+          }
+        }
+      }
+    },
+    "rewrite" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rewrite"
+          }
+        }
+      }
+    },
+    "summarize" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summarize"
+          }
+        }
+      }
+    },
+    "summarize-text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Understand\nFaster"
+          }
+        }
+      }
+    },
+    "template" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Template"
+          }
+        }
+      }
+    },
+    "turn-photo-video" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn Phoro into Video"
           }
         }
       }
