@@ -9,13 +9,6 @@ import Combine
 import Foundation
 import SwiftUI
 
-// MARK: - ToastState
-
-struct ToastState {
-    let message: String
-    let isSuccess: Bool
-}
-
 // MARK: - ChatViewModel
 
 @MainActor
@@ -58,7 +51,7 @@ final class ChatViewModel: ObservableObject {
     }
 
     func regenerateResponse() {
-        guard let lastUserMessage = messages.last(where: { $0.isUser }) else { return }
+        guard messages.last(where: { $0.isUser }) != nil else { return }
         messages.removeAll { !$0.isUser }
         generateResponse()
     }
@@ -68,14 +61,19 @@ final class ChatViewModel: ObservableObject {
     private func generateResponse() {
         isLoading = true
         Task {
-            try? await Task.sleep(for: .seconds(2))
-            let aiMessage = ChatMessage(
-                text: "This is a simulated AI response. In a real app, this would come from the API.",
-                isUser: false,
-                date: Date()
-            )
-            messages.append(aiMessage)
-            isLoading = false
+            do {
+                try await Task.sleep(for: .seconds(2))
+                let aiMessage = ChatMessage(
+                    text: "This is a simulated AI response. In a real app, this would come from the API.",
+                    isUser: false,
+                    date: Date()
+                )
+                messages.append(aiMessage)
+                isLoading = false
+            } catch {
+                isLoading = false
+                showToast(message: error.localizedDescription, isSuccess: false)
+            }
         }
     }
 
@@ -86,13 +84,4 @@ final class ChatViewModel: ObservableObject {
             toast = nil
         }
     }
-}
-
-// MARK: - ChatMessage
-
-struct ChatMessage: Identifiable, Hashable {
-    let id = UUID()
-    let text: String
-    let isUser: Bool
-    let date: Date
 }
