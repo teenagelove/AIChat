@@ -53,28 +53,25 @@ private extension ChatListView {
     // MARK: - UI Components
 
     var chatList: some View {
-        ScrollView {
-            LazyVStack(alignment: .leading, spacing: 16) {
-                ForEach(viewModel.groupedChats, id: \.key) { section in
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text(section.key)
-                            .font(.semiBold20)
-                            .padding(.horizontal, 16)
-
-                        ForEach(section.value) { chat in
-                            ChatHistoryRowView(
-                                title: chat.title ?? String(
-                                    localized: .chatListUntitled
-                                ),
-                                time: chat.date?.formatted(date: .omitted, time: .shortened) ?? ""
-                            )
-                            .padding(.horizontal, 16)
-                        }
+        List {
+            ForEach(viewModel.groupedChats, id: \.key) { section in
+                Section(section.key) {
+                    ForEach(section.value) { chat in
+                        ChatHistoryRowView(
+                            title: chat.title ?? String(
+                                localized: .chatListUntitled
+                            ),
+                            time: chat.date?.formatted(date: .omitted, time: .shortened) ?? ""
+                        )
+                        .listRowBackground(Color.card.opacity(0.5))
+                        .listRowSeparator(.hidden)
                     }
                 }
+                .headerProminence(.increased)
             }
-            .padding(.top, 16)
         }
+        .listStyle(.plain)
+        .scrollContentBackground(.hidden)
     }
 }
 
