@@ -15,12 +15,9 @@ struct ChatListEmptyView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            Image(.generateBIco)
+            Image(.magicPencilAIco)
                 .resizable()
-                .frame(width: 48, height: 48)
-                .padding(8)
-                .background(LinearGradient.primaryGradient)
-                .clipShape(Circle())
+                .frame(width: 64, height: 64)
 
             Text(.chatListEmptyTitle)
                 .font(.semiBold20)
