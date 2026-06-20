@@ -10,8 +10,7 @@ import Foundation
 // MARK: - ChatSection
 
 struct ChatSection: Identifiable {
+    let id = UUID()
     let title: String
     let chats: [DolaChat]
-
-    var id: String { title }
 }
