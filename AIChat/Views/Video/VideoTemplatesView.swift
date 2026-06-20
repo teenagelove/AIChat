@@ -19,17 +19,16 @@ struct VideoTemplatesView: View {
     // MARK: - Body
 
     var body: some View {
-        ZStack {
-            Color.backgroundClr
+        ScrollView {
+            VStack(spacing: 24) {
+                CategoryTabsView(selectedCategory: $selectedCategory)
 
-            VStack(spacing: 0) {
-                categoryTabs
-
-                templateGrid
+                VideoTemplateGridView(templates: filteredTemplates)
             }
-            .padding()
+            .padding(.horizontal, 16)
+            .padding(.top, 24)
         }
-        .ignoresSafeArea(edges: .bottom)
+        .background(Color.backgroundClr.ignoresSafeArea(edges: .bottom))
         .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -63,48 +62,7 @@ struct VideoTemplatesView: View {
 
 private extension VideoTemplatesView {
 
-    // MARK: - UI Components
-
-    var categoryTabs: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(spacing: 12) {
-                ForEach(VideoCategory.allCases) { category in
-                    categoryTab(category)
-                }
-            }
-        }
-    }
-
-    func categoryTab(_ category: VideoCategory) -> some View {
-        Button {
-            selectedCategory = category
-        } label: {
-            Text(category.rawValue)
-                .font(.medium14)
-                .foregroundStyle(selectedCategory == category ? .white : .white.opacity(0.6))
-                .padding(.vertical, 8)
-                .padding(.horizontal, 12)
-                .background(selectedCategory == category ? LinearGradient.primaryGradient : LinearGradient(colors: [.card], startPoint: .leading, endPoint: .trailing))
-                .clipShape(Capsule())
-        }
-
-    }
-
-    var templateGrid: some View {
-        ScrollView {
-            LazyVGrid(columns: [
-                GridItem(.flexible(), spacing: 12),
-                GridItem(.flexible(), spacing: 12)
-            ], spacing: 12) {
-                ForEach(filteredTemplates) { template in
-                    VideoTemplateCardView(
-                        title: template.title,
-                        image: template.image
-                    )
-                }
-            }
-        }
-    }
+    // MARK: - Properties
 
     var filteredTemplates: [VideoTemplate] {
         VideoTemplate.mock.filter { $0.category == selectedCategory }

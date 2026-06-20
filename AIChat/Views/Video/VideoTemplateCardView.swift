@@ -22,7 +22,16 @@ struct VideoTemplateCardView: View {
         ZStack(alignment: .bottom) {
             Image(image)
                 .resizable()
-                .aspectRatio(3/4, contentMode: .fit)
+                .aspectRatio(171/232, contentMode: .fill)
+
+            LinearGradient(
+                colors: [
+                    Color(.gradientGray),
+                    Color(.gradientGray).opacity(0)
+                ],
+                startPoint: .bottom,
+                endPoint: .top
+            )
 
             Text(title)
                 .font(.regular16)
