@@ -17,17 +17,17 @@ struct ChatListEmptyView: View {
         VStack(spacing: 16) {
             Image(.magicPencilAIco)
                 .resizable()
-                .frame(width: 64, height: 64)
+                .foregroundStyle(LinearGradient.primaryGradient)
+                .frame(width: 60, height: 60)
 
             Text(.chatListEmptyTitle)
-                .font(.semiBold20)
+                .font(.bold28)
 
             Text(.chatListEmptySubtitle)
-                .font(.regular14)
+                .font(.regular16)
                 .foregroundStyle(.white.opacity(0.5))
                 .multilineTextAlignment(.center)
         }
-        .padding(.horizontal, 32)
     }
 }
 

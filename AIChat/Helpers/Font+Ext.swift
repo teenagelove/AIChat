@@ -13,6 +13,7 @@ extension Font {
 
     // MARK: - Regular
 
+    static let regular12 = Font.custom("Inter28pt-Regular", size: 12)
     static let regular14 = Font.custom("Inter28pt-Regular", size: 14)
     static let regular16 = Font.custom("Inter28pt-Regular", size: 16)
     static let regular20 = Font.custom("Inter28pt-Regular", size: 20)

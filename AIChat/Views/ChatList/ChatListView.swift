@@ -54,36 +54,24 @@ private extension ChatListView {
 
     var chatList: some View {
         ScrollView {
-            LazyVStack(spacing: 12) {
-                ForEach(viewModel.chats) { chat in
-                    chatRow(chat)
+            LazyVStack(alignment: .leading, spacing: 16) {
+                ForEach(viewModel.groupedChats, id: \.key) { section in
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text(section.key)
+                            .font(.semiBold20)
+                            .padding(.horizontal, 16)
+
+                        ForEach(section.value) { chat in
+                            ChatHistoryRowView(
+                                title: chat.title ?? String(localized: "chat-list-untitled"),
+                                time: chat.date?.formatted(date: .omitted, time: .shortened) ?? ""
+                            )
+                            .padding(.horizontal, 16)
+                        }
+                    }
                 }
             }
-            .padding(.horizontal, 16)
             .padding(.top, 16)
-        }
-    }
-
-    func chatRow(_ chat: DolaChat) -> some View {
-        Button {
-            coordinator.navigate(to: .chat)
-        } label: {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(chat.title ?? String(localized: "chat-list-untitled"))
-                    .font(.semiBold16)
-                    .foregroundStyle(.white)
-
-                if let preview = chat.lastMessagePreview {
-                    Text(preview)
-                        .font(.regular14)
-                        .foregroundStyle(.white.opacity(0.5))
-                        .lineLimit(1)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(16)
-            .background(Color.card.opacity(0.5))
-            .clipShape(RoundedRectangle(cornerRadius: 16))
         }
     }
 }
