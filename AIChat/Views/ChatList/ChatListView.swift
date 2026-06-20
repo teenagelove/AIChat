@@ -23,11 +23,7 @@ struct ChatListView: View {
             Color.backgroundClr
                 .ignoresSafeArea(edges: .bottom)
 
-            if viewModel.chats.isEmpty {
-                ChatListEmptyView()
-            } else {
-                chatList
-            }
+            content
         }
         .navigationBarBackButtonHidden()
         .toolbar {
@@ -50,7 +46,42 @@ struct ChatListView: View {
 
 private extension ChatListView {
 
-    // MARK: - UI Components
+    // MARK: - Content
+
+    @ViewBuilder
+    var content: some View {
+        switch viewModel.state {
+        case .idle, .loading:
+            ProgressView()
+                .tint(.white)
+        case .loaded:
+            chatList
+        case .empty:
+            ChatListEmptyView()
+        case .error(let message):
+            VStack(spacing: 16) {
+                Text(message)
+                    .font(.regular14)
+                    .foregroundStyle(.white.opacity(0.5))
+                    .multilineTextAlignment(.center)
+
+                Button {
+                    Task { await viewModel.loadChats() }
+                } label: {
+                    Text(.chatListRetry)
+                        .font(.semiBold16)
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 12)
+                        .background(LinearGradient.primaryGradient)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
+            }
+            .padding(.horizontal, 32)
+        }
+    }
+
+    // MARK: - Chat List
 
     var chatList: some View {
         List(viewModel.groupedChats, id: \.key) { section in

@@ -128,7 +128,18 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chat History"
+            "value" : "AI Chat History"
+          }
+        }
+      }
+    },
+    "chat-list-retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
           }
         }
       }

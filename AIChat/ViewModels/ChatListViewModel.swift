@@ -13,10 +13,19 @@ import Foundation
 @MainActor
 final class ChatListViewModel: ObservableObject {
 
+    // MARK: - State
+
+    enum State {
+        case idle
+        case loading
+        case loaded([DolaChat])
+        case empty
+        case error(String)
+    }
+
     // MARK: - Published
 
-    @Published var chats: [DolaChat] = []
-    @Published var isLoading = false
+    @Published var state: State = .idle
 
     // MARK: - Dependencies
 
@@ -31,6 +40,7 @@ final class ChatListViewModel: ObservableObject {
     // MARK: - Computed
 
     var groupedChats: [(key: String, value: [DolaChat])] {
+        guard case .loaded(let chats) = state else { return [] }
         let calendar = Calendar.current
         let grouped = Dictionary(grouping: chats) { chat in
             guard let date = chat.date else { return "Unknown" }
@@ -56,12 +66,12 @@ final class ChatListViewModel: ObservableObject {
     // MARK: - Actions
 
     func loadChats() async {
-        isLoading = true
+        state = .loading
         do {
-            chats = try await chatService.getChats(limit: 50, offset: 0)
+            let chats = try await chatService.getChats(limit: 50, offset: 0)
+            state = chats.isEmpty ? .empty : .loaded(chats)
         } catch {
-            print("Failed to load chats: \(error)")
+            state = .error(error.localizedDescription)
         }
-        isLoading = false
     }
 }
