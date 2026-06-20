@@ -44,9 +44,7 @@ struct ChatListView: View {
                     .font(.semiBold20)
             }
         }
-        .task {
-            await viewModel.loadChats()
-        }
+        .task { await viewModel.loadChats() }
     }
 }
 
@@ -65,25 +63,9 @@ private extension ChatListView {
         case .empty:
             ChatListEmptyView()
         case .error(let message):
-            VStack(spacing: 16) {
-                Text(message)
-                    .font(.regular14)
-                    .foregroundStyle(.white.opacity(0.5))
-                    .multilineTextAlignment(.center)
-
-                Button {
-                    Task { await viewModel.loadChats() }
-                } label: {
-                    Text(.chatListRetry)
-                        .font(.semiBold16)
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 12)
-                        .background(LinearGradient.primaryGradient)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                }
+            ErrorView(message: message) {
+                Task { await viewModel.loadChats() }
             }
-            .padding(.horizontal, 32)
         }
     }
 
