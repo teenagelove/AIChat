@@ -23,4 +23,10 @@ enum Constants {
         static let weekly = "com.labs.fviu.weekly"
         static let yearly = "com.labs.fviu.yearly"
     }
+
+    // MARK: - IDs
+
+    enum IDs {
+        static let loadingIndicator = "loading"
+    }
 }
