@@ -9,51 +9,44 @@ import SwiftUI
 
 struct VideoGenCardView: View {
     var body: some View {
-        content
-            .background(backgroundImage)
-            .clipShape(.rect(cornerRadius: 24))
+        ZStack {
+            Image(.videoBackground)
+                .resizable()
+                .clipShape(.rect(cornerRadius: 24))
+
+            VStack {
+                VStack(alignment: .leading) {
+                    iconContainer
+
+                    title
+
+                    description
+
+                    Spacer()
+                }
+                .padding()
+
+                readyButton
+                    .padding(.bottom)
+            }
+        }
     }
 }
 
 private extension VideoGenCardView {
 
-    // MARK: - Layout
-
-    var content: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            iconContainer
-                .padding(.top, 20)
-                .padding(.leading, 20)
-
-            Spacer(minLength: 16)
-
-            title
-                .padding(.leading, 20)
-
-            description
-                .padding(.top, 6)
-                .padding(.leading, 20)
-
-            Spacer()
-
-            readyButton
-                .padding(.leading, 20)
-                .padding(.bottom, 20)
-        }
-    }
-
     // MARK: - UI Components
 
-    var backgroundImage: some View {
-        Image(.videoBackground)
-            .resizable()
+    var title: some View {
+        Text(.turnPhotoVideo)
+            .font(.medium20)
     }
 
     var iconContainer: some View {
         ZStack {
             Color.white.opacity(0.15)
-                .frame(width: 48, height: 48)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .frame(width: 36, height: 36)
+                .clipShape(Circle())
 
             Image(.imageIco)
                 .resizable()
@@ -61,9 +54,19 @@ private extension VideoGenCardView {
         }
     }
 
-    var title: some View {
-        Text(.turnPhotoVideo)
-            .font(.medium20)
+    var readyButton: some View {
+        HStack(spacing: 8) {
+            Text(.readyInSeconds)
+                .font(.regular14)
+
+            Image(.polygonIco)
+                .resizable()
+                .frame(width: 16, height: 16)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(Color.white.opacity(0.3))
+        .clipShape(Capsule())
     }
 
     var description: some View {
@@ -77,21 +80,6 @@ private extension VideoGenCardView {
             Text(.template)
                 .font(.regular14)
         }
-    }
-
-    var readyButton: some View {
-        HStack(spacing: 8) {
-            Text(.readyInSeconds)
-                .font(.regular14)
-
-            Image(.polygonIco)
-                .resizable()
-                .frame(width: 16, height: 16)
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 10)
-        .background(Color.white.opacity(0.3))
-        .clipShape(Capsule())
     }
 }
 
