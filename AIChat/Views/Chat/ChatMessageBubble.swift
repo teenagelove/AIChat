@@ -39,7 +39,7 @@ private extension ChatMessageBubble {
     var userBubble: some View {
         Text(message.text)
             .font(.regular16)
-            .foregroundColor(.white)
+            .foregroundStyle(.white)
             .padding(16)
             .background(LinearGradient.primaryGradient.opacity(0.9))
             .clipShape(
@@ -55,9 +55,21 @@ private extension ChatMessageBubble {
 
     var aiBubble: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(message.text)
-                .font(.regular16)
-                .foregroundColor(.white.opacity(0.8))
+            if message.text.hasTitle {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(message.text.title)
+                        .font(.semiBold16)
+                        .foregroundStyle(LinearGradient.primaryGradient)
+
+                    Text(message.text.body)
+                        .font(.regular16)
+                        .foregroundStyle(.white.opacity(0.8))
+                }
+            } else {
+                Text(message.text)
+                    .font(.regular16)
+                    .foregroundStyle(.white.opacity(0.8))
+            }
 
             Rectangle()
                 .fill(.white.opacity(0.1))

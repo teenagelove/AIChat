@@ -27,12 +27,11 @@ struct ChatInputBar: View {
                 if text.isEmpty {
                     Text(.chatAskAnythingPlaceholder)
                         .font(.regular16)
-                        .foregroundColor(.white.opacity(0.5))
+                        .foregroundStyle(.white.opacity(0.5))
                         .padding(8)
                 }
                 TextEditor(text: $text)
                     .font(.regular16)
-                    .foregroundColor(.white)
                     .scrollContentBackground(.hidden)
                     .focused($isInputFocused)
                     .frame(minHeight: 40, maxHeight: 120)
@@ -63,7 +62,7 @@ private extension ChatInputBar {
                 Image(.send2Ico)
                     .resizable()
                     .frame(width: 24, height: 24)
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                     .padding(8)
                     .background(LinearGradient.primaryGradient)
                     .clipShape(Circle())
@@ -73,7 +72,7 @@ private extension ChatInputBar {
                 Image(.importIco)
                     .resizable()
                     .frame(width: 24, height: 24)
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                     .padding(8)
                     .overlay(
                         Circle()

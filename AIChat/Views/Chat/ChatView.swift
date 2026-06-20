@@ -69,7 +69,7 @@ struct ChatView: View {
 
                         Text(.chatDate)
                             .font(.regular14)
-                            .foregroundColor(.white.opacity(0.3))
+                            .foregroundStyle(.white.opacity(0.3))
                     }
                 }
             }

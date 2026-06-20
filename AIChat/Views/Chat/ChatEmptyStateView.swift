@@ -19,7 +19,7 @@ struct ChatEmptyStateView: View {
 
             Text(.chatCenterSubtitle)
                 .font(.regular14)
-                .foregroundColor(.white.opacity(0.5))
+                .foregroundStyle(.white.opacity(0.5))
                 .multilineTextAlignment(.center)
         }
     }
