@@ -53,22 +53,20 @@ private extension ChatListView {
     // MARK: - UI Components
 
     var chatList: some View {
-        List {
-            ForEach(viewModel.groupedChats, id: \.key) { section in
-                Section(section.key) {
-                    ForEach(section.value) { chat in
-                        ChatHistoryRowView(
-                            title: chat.title ?? String(
-                                localized: .chatListUntitled
-                            ),
-                            time: chat.date?.formatted(date: .omitted, time: .shortened) ?? ""
-                        )
-                        .listRowBackground(Color.card.opacity(0.5))
-                        .listRowSeparator(.hidden)
-                    }
+        List(viewModel.groupedChats, id: \.key) { section in
+            Section(section.key) {
+                ForEach(section.value) { chat in
+                    ChatHistoryRowView(
+                        title: chat.title ?? String(
+                            localized: .chatListUntitled
+                        ),
+                        time: chat.date?.formatted(date: .omitted, time: .shortened) ?? ""
+                    )
+                    .listRowBackground(Color.card.opacity(0.5))
+                    .listRowSeparator(.hidden)
                 }
-                .headerProminence(.increased)
             }
+            .headerProminence(.increased)
         }
         .listStyle(.plain)
         .scrollContentBackground(.hidden)
