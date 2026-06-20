@@ -14,7 +14,13 @@ struct ChatListView: View {
     // MARK: - Dependencies
 
     @EnvironmentObject private var coordinator: Coordinator
-    @StateObject private var viewModel = ChatListViewModel(chatService: ChatService())
+    @StateObject private var viewModel: ChatListViewModel
+
+    // MARK: - Init
+
+    init(chatService: any ChatServiceProtocol) {
+        _viewModel = StateObject(wrappedValue: ChatListViewModel(chatService: chatService))
+    }
 
     // MARK: - Body
 
@@ -107,6 +113,6 @@ private extension ChatListView {
 // MARK: - Preview
 
 #Preview {
-    ChatListView()
+    ChatListView(chatService: ChatService())
         .environmentObject(Coordinator())
 }

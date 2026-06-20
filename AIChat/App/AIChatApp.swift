@@ -17,6 +17,7 @@ struct AIChatApp: App {
     @StateObject private var coordinator = Coordinator()
     @StateObject private var subscriptionService: SubscriptionService
     @StateObject private var paywallViewModel: PaywallViewModel
+    private let chatService = ChatService()
 
     // MARK: - Init
 
@@ -64,9 +65,9 @@ struct AIChatApp: App {
         case .paywall:
             PaywallView()
         case .chat:
-            ChatView()
+            ChatView(chatService: chatService)
         case .chatList:
-            ChatListView()
+            ChatListView(chatService: chatService)
         }
     }
 }
