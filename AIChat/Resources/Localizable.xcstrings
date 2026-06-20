@@ -2,7 +2,15 @@
   "sourceLanguage" : "en",
   "strings" : {
     " for anything" : {
-
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " for anything"
+          }
+        }
+      }
     },
     "ask-anything-placeholder" : {
       "extractionState" : "manual",
@@ -81,6 +89,17 @@
         }
       }
     },
+    "chat-for-anything" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " for anything"
+          }
+        }
+      }
+    },
     "chat-title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -88,6 +107,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "AI Chat"
+          }
+        }
+      }
+    },
+    "chat-your" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your "
           }
         }
       }
@@ -393,7 +423,15 @@
       }
     },
     "Your " : {
-
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your "
+          }
+        }
+      }
     }
   },
   "version" : "1.2"

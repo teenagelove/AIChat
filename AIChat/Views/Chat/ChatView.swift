@@ -26,7 +26,7 @@ struct ChatView: View {
 
             VStack(spacing: 0) {
                 if viewModel.messages.isEmpty {
-                    centerContent
+                    ChatEmptyStateView()
                         .frame(maxHeight: .infinity)
                 } else {
                     messageList
@@ -44,15 +44,7 @@ struct ChatView: View {
                 .padding(.bottom, 8)
             }
 
-            if let toast = viewModel.toast {
-                VStack {
-                    Spacer()
-                    ToastView(message: toast.message, isSuccess: toast.isSuccess)
-                        .padding(.bottom, 100)
-                }
-                .transition(.move(edge: .bottom).combined(with: .opacity))
-                .animation(.easeInOut(duration: 0.3), value: viewModel.toast != nil)
-            }
+            toastOverlay
         }
         .navigationBarBackButtonHidden()
         .toolbar {
@@ -97,6 +89,20 @@ private extension ChatView {
 
     // MARK: - UI Components
 
+    var toastOverlay: some View {
+        Group {
+            if let toast = viewModel.toast {
+                VStack {
+                    Spacer()
+                    ToastView(message: toast.message, isSuccess: toast.isSuccess)
+                        .padding(.bottom, 100)
+                }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .animation(.easeInOut(duration: 0.3), value: viewModel.toast != nil)
+            }
+        }
+    }
+
     var messageList: some View {
         ScrollViewReader { proxy in
             ScrollView {
@@ -135,27 +141,6 @@ private extension ChatView {
                 }
             }
         }
-    }
-
-    var centerContent: some View {
-        VStack(spacing: 16) {
-            centerTitle
-
-            Text(.chatCenterSubtitle)
-                .font(.regular14)
-                .foregroundColor(.white.opacity(0.5))
-                .multilineTextAlignment(.center)
-        }
-    }
-
-    var centerTitle: some View {
-        HStack(spacing: 0) {
-            Text("Your ")
-            Text(.chatAiAssistant)
-                .foregroundStyle(LinearGradient.primaryGradient)
-            Text(" for anything")
-        }
-        .font(.semiBold20)
     }
 }
 
