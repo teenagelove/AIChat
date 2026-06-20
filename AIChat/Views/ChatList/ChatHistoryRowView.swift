@@ -19,13 +19,13 @@ struct ChatHistoryRowView: View {
     // MARK: - Body
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 24) {
             Image(.generateBIco)
                 .resizable()
                 .foregroundStyle(LinearGradient.primaryGradient)
                 .frame(width: 28, height: 28)
 
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(title)
                     .font(.semiBold16)
                     .lineLimit(1)
@@ -37,7 +37,7 @@ struct ChatHistoryRowView: View {
 
             Spacer()
         }
-        .padding(16)
+        .padding(24)
         .background(Color.card.opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 16))
     }
