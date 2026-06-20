@@ -2,7 +2,7 @@
 //  ChatMessage.swift
 //  AIChat
 //
-//  Created by Danil Kazakov on 20.06.2026.
+//  Created by Danil Kazakov on 19.06.2026.
 //
 
 import Foundation
