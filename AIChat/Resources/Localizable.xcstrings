@@ -48,6 +48,17 @@
         }
       }
     },
+    "chat-copied" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The text has been copied successfully"
+          }
+        }
+      }
+    },
     "chat-center-title" : {
       "extractionState" : "manual",
       "localizations" : {

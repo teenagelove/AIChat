@@ -25,16 +25,14 @@ struct ChatView: View {
                 .ignoresSafeArea(edges: .bottom)
 
             VStack(spacing: 0) {
-                Spacer()
-
-                centerContent
-
-                Spacer()
+                if viewModel.messages.isEmpty {
+                    centerContent
+                        .frame(maxHeight: .infinity)
+                } else {
+                    messageList
+                }
             }
-
-            VStack {
-                Spacer()
-
+            .safeAreaInset(edge: .bottom) {
                 ChatInputBar(
                     text: $viewModel.messageText,
                     isInputFocused: $isInputFocused,
@@ -44,6 +42,16 @@ struct ChatView: View {
                 )
                 .padding(.horizontal, 16)
                 .padding(.bottom, 8)
+            }
+
+            if let toast = viewModel.toast {
+                VStack {
+                    Spacer()
+                    ToastView(message: toast.message, isSuccess: toast.isSuccess)
+                        .padding(.bottom, 100)
+                }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .animation(.easeInOut(duration: 0.3), value: viewModel.toast != nil)
             }
         }
         .navigationBarBackButtonHidden()
@@ -89,6 +97,46 @@ private extension ChatView {
 
     // MARK: - UI Components
 
+    var messageList: some View {
+        ScrollViewReader { proxy in
+            ScrollView {
+                LazyVStack(spacing: 16) {
+                    ForEach(viewModel.messages) { message in
+                        ChatMessageBubble(
+                            message: message,
+                            onCopy: message.isUser ? nil : { viewModel.copyMessage(message) },
+                            onRefresh: message.isUser ? nil : { viewModel.regenerateResponse() }
+                        )
+                        .id(message.id)
+                    }
+
+                    if viewModel.isLoading {
+                        ChatMessageBubble(
+                            message: ChatMessage(text: "", isUser: false, date: Date()),
+                            isLoading: true
+                        )
+                        .id(Constants.IDs.loadingIndicator)
+                    }
+                }
+                .padding(.horizontal, 16)
+                .padding(.top, 16)
+                .padding(.bottom, 16)
+            }
+            .onChange(of: viewModel.messages.count) { _ in
+                withAnimation {
+                    proxy.scrollTo(viewModel.messages.last?.id, anchor: .bottom)
+                }
+            }
+            .onChange(of: viewModel.isLoading) { isLoading in
+                if isLoading {
+                    withAnimation {
+                        proxy.scrollTo(Constants.IDs.loadingIndicator, anchor: .bottom)
+                    }
+                }
+            }
+        }
+    }
+
     var centerContent: some View {
         VStack(spacing: 16) {
             centerTitle
@@ -98,7 +146,6 @@ private extension ChatView {
                 .foregroundColor(.white.opacity(0.5))
                 .multilineTextAlignment(.center)
         }
-        .padding(.bottom, 100)
     }
 
     var centerTitle: some View {
