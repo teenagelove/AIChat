@@ -25,6 +25,10 @@ final class ChatViewModel: ObservableObject {
 
     private let chatService: any ChatServiceProtocol
 
+    // MARK: - Properties
+
+    private var chatId: String?
+
     // MARK: - Init
 
     init(chatService: any ChatServiceProtocol) {
@@ -52,7 +56,7 @@ final class ChatViewModel: ObservableObject {
         messages.append(userMessage)
         messageText = ""
 
-        generateResponse()
+        sendToAPI(message: text)
     }
 
     func copyMessage(_ message: ChatMessage) {
@@ -63,18 +67,30 @@ final class ChatViewModel: ObservableObject {
     func regenerateResponse() {
         guard messages.last(where: { $0.isUser }) != nil else { return }
         messages.removeAll { !$0.isUser }
-        generateResponse()
+        guard let lastUserText = messages.last(where: { $0.isUser })?.text else { return }
+        sendToAPI(message: lastUserText)
     }
+}
 
-    // MARK: - Private
+private extension ChatViewModel {
 
-    private func generateResponse() {
+    // MARK: - API
+
+    func sendToAPI(message: String) {
         isLoading = true
+        let currentChatId = chatId ?? UUID().uuidString
+
         Task {
             do {
-                try await Task.sleep(for: .seconds(2))
+                let response = try await chatService.sendMessage(
+                    chatId: currentChatId,
+                    message: message,
+                    locale: nil
+                )
+                chatId = response.chatId
+
                 let aiMessage = ChatMessage(
-                    text: "This is a simulated AI response. In a real app, this would come from the API.",
+                    text: response.assistantMessage,
                     isUser: false,
                     date: Date()
                 )
@@ -87,7 +103,9 @@ final class ChatViewModel: ObservableObject {
         }
     }
 
-    private func showToast(message: String, isSuccess: Bool) {
+    // MARK: - Toast
+
+    func showToast(message: String, isSuccess: Bool) {
         toast = ToastState(message: message, isSuccess: isSuccess)
         Task {
             try? await Task.sleep(for: .seconds(2))
