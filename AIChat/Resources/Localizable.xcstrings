@@ -56,6 +56,17 @@
         }
       }
     },
+    "chat-center-title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your {gradient}AI assistant{/gradient} for anything"
+          }
+        }
+      }
+    },
     "chat-copied" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -67,13 +78,35 @@
         }
       }
     },
+    "chat-date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "26.03.2026"
+          }
+        }
+      }
+    },
+    "chat-for-anything" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " for anything"
+          }
+        }
+      }
+    },
     "chat-list-empty-subtitle" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Start a conversation to see your history here"
+            "value" : "Start a conversation to see\nyour history here"
           }
         }
       }
@@ -107,39 +140,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Untitled Chat"
-          }
-        }
-      }
-    },
-    "chat-center-title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your {gradient}AI assistant{/gradient} for anything"
-          }
-        }
-      }
-    },
-    "chat-date" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "26.03.2026"
-          }
-        }
-      }
-    },
-    "chat-for-anything" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " for anything"
           }
         }
       }

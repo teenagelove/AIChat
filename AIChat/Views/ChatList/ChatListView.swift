@@ -63,7 +63,9 @@ private extension ChatListView {
 
                         ForEach(section.value) { chat in
                             ChatHistoryRowView(
-                                title: chat.title ?? String(localized: "chat-list-untitled"),
+                                title: chat.title ?? String(
+                                    localized: .chatListUntitled
+                                ),
                                 time: chat.date?.formatted(date: .omitted, time: .shortened) ?? ""
                             )
                             .padding(.horizontal, 16)

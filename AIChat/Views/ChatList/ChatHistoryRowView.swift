@@ -22,7 +22,8 @@ struct ChatHistoryRowView: View {
         HStack(spacing: 12) {
             Image(.generateBIco)
                 .resizable()
-                .frame(width: 32, height: 32)
+                .foregroundStyle(LinearGradient.primaryGradient)
+                .frame(width: 28, height: 28)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
@@ -30,7 +31,7 @@ struct ChatHistoryRowView: View {
                     .lineLimit(1)
 
                 Text(time)
-                    .font(.regular12)
+                    .font(.regular14)
                     .foregroundStyle(.white.opacity(0.5))
             }
 
