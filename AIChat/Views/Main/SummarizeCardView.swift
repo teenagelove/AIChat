@@ -10,9 +10,12 @@ import SwiftUI
 struct SummarizeCardView: View {
     var body: some View {
         FeatureCardView(
-            icon: .magicPencilAIco,
-            titleKey: "improve-text",
-            tagKeys: ["rewrite", "fix-grammar"]
+            icon: .promptAIco,
+            titleKey: String(localized: .summarizeText),
+            tagKeys: [
+                String(localized: .summarize),
+                String(localized: .keyPoints)
+            ]
         )
     }
 }

@@ -11,8 +11,11 @@ struct ImproveCardView: View {
     var body: some View {
         FeatureCardView(
             icon: .magicPencilAIco,
-            titleKey: "improve-text",
-            tagKeys: ["rewrite", "fix-grammar"]
+            titleKey: String(localized: .improveText),
+            tagKeys: [
+                String(localized: .rewrite),
+                String(localized: .fixGrammar)
+            ]
         )
     }
 }

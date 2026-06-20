@@ -41,10 +41,11 @@ private extension MainView {
     // MARK: - UI Components
 
     var settingsButton: some View {
-        SettingsButtonView()
-            .onTapGesture { isShowingNotImplemented = true }
-            .padding(.top, 16)
-            .padding(.trailing, 16)
+        SettingsButtonView {
+            isShowingNotImplemented = true
+        }
+        .padding(.top, 16)
+        .padding(.trailing, 16)
     }
 
     var content: some View {

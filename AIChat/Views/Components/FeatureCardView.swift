@@ -13,14 +13,17 @@ struct FeatureCardView: View {
     let tagKeys: [String]
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             iconView
+                .padding(.bottom, 23)
 
             Text(LocalizedStringKey(titleKey))
+                .padding(.bottom, 8)
 
             tagsView
         }
         .padding()
+        .frame(maxWidth: .infinity)
         .background(.card)
         .clipShape(.rect(cornerRadius: 24))
     }

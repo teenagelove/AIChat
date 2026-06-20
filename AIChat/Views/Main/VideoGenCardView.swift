@@ -9,27 +9,28 @@ import SwiftUI
 
 struct VideoGenCardView: View {
     var body: some View {
-        ZStack {
+        VStack {
+            VStack(alignment: .leading) {
+                iconContainer
+
+                title
+
+                description
+            }
+            .padding(.horizontal, 16)
+
+            readyButton
+                .padding(.top, 116)
+        }
+        .padding(.top, 24)
+        .padding(.bottom)
+        .frame(maxWidth: .infinity)
+        .background {
             Image(.videoBackground)
                 .resizable()
-                .clipShape(.rect(cornerRadius: 24))
-
-            VStack {
-                VStack(alignment: .leading) {
-                    iconContainer
-
-                    title
-
-                    description
-
-                    Spacer()
-                }
-                .padding()
-
-                readyButton
-                    .padding(.bottom)
-            }
+                .scaledToFill()
         }
+        .clipShape(.rect(cornerRadius: 24))
     }
 }
 
@@ -80,6 +81,7 @@ private extension VideoGenCardView {
             Text(.template)
                 .font(.regular14)
         }
+        .opacity(0.7)
     }
 }
 
