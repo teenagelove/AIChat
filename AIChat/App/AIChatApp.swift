@@ -65,6 +65,8 @@ struct AIChatApp: App {
             PaywallView()
         case .chat:
             ChatView()
+        case .chatList:
+            ChatListView()
         }
     }
 }

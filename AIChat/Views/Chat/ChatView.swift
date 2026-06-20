@@ -75,7 +75,9 @@ struct ChatView: View {
             }
 
             ToolbarItem(placement: .topBarTrailing) {
-                ForwardButtonView {}
+                ForwardButtonView {
+                    coordinator.navigate(to: .chatList)
+                }
             }
         }
         .task {

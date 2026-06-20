@@ -11,4 +11,5 @@ enum Screen: Hashable {
     case main
     case paywall
     case chat
+    case chatList
 }

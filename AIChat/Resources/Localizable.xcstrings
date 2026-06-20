@@ -67,6 +67,50 @@
         }
       }
     },
+    "chat-list-empty-subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start a conversation with AI"
+          }
+        }
+      }
+    },
+    "chat-list-empty-title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No chats yet"
+          }
+        }
+      }
+    },
+    "chat-list-title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chat History"
+          }
+        }
+      }
+    },
+    "chat-list-untitled" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untitled Chat"
+          }
+        }
+      }
+    },
     "chat-center-title" : {
       "extractionState" : "manual",
       "localizations" : {
