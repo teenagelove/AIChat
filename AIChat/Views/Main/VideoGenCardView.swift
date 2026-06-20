@@ -9,48 +9,45 @@ import SwiftUI
 
 struct VideoGenCardView: View {
     var body: some View {
-        ZStack {
-            Image(.videoBackground)
-                .resizable()
-                .clipShape(.rect(cornerRadius: 24))
-
-            VStack(alignment: .leading, spacing: 0) {
-                iconContainer
-                    .padding(.top, 20)
-                    .padding(.leading, 20)
-
-                Spacer(minLength: 12)
-
-                Text(.turnPhotoVideo)
-                    .font(.medium20)
-                    .padding(.leading, 20)
-
-                HStack(spacing: 6) {
-                    Text(.animate)
-                        .font(.regular14)
-
-                    Capsule()
-                        .frame(width: 4, height: 4)
-
-                    Text(.template)
-                        .font(.regular14)
-                }
-                .padding(.top, 6)
-                .padding(.leading, 20)
-
-                Spacer()
-
-                readyButton
-                    .padding(.leading, 20)
-                    .padding(.bottom, 20)
-            }
-        }
+        content
+            .background(backgroundImage)
+            .clipShape(.rect(cornerRadius: 24))
     }
 }
 
 private extension VideoGenCardView {
 
+    // MARK: - Layout
+
+    var content: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            iconContainer
+                .padding(.top, 20)
+                .padding(.leading, 20)
+
+            Spacer(minLength: 16)
+
+            title
+                .padding(.leading, 20)
+
+            description
+                .padding(.top, 6)
+                .padding(.leading, 20)
+
+            Spacer()
+
+            readyButton
+                .padding(.leading, 20)
+                .padding(.bottom, 20)
+        }
+    }
+
     // MARK: - UI Components
+
+    var backgroundImage: some View {
+        Image(.videoBackground)
+            .resizable()
+    }
 
     var iconContainer: some View {
         ZStack {
@@ -61,6 +58,24 @@ private extension VideoGenCardView {
             Image(.imageIco)
                 .resizable()
                 .frame(width: 24, height: 24)
+        }
+    }
+
+    var title: some View {
+        Text(.turnPhotoVideo)
+            .font(.medium20)
+    }
+
+    var description: some View {
+        HStack(spacing: 6) {
+            Text(.animate)
+                .font(.regular14)
+
+            Capsule()
+                .frame(width: 4, height: 4)
+
+            Text(.template)
+                .font(.regular14)
         }
     }
 
