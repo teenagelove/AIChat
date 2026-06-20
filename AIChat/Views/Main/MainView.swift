@@ -59,7 +59,9 @@ private extension MainView {
             }
 
             HStack(alignment: .top, spacing: 8) {
-                VideoGenCardView()
+                VideoGenCardView {
+                    coordinator.navigate(to: .videoTemplates)
+                }
 
                 VStack(spacing: 8) {
                     ImproveCardView()

@@ -630,6 +630,17 @@
           }
         }
       }
+    },
+    "video-templates-title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI Video"
+          }
+        }
+      }
     }
   },
   "version" : "1.2"

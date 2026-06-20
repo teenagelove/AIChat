@@ -68,6 +68,8 @@ struct AIChatApp: App {
             ChatView(chatService: chatService)
         case .chatList:
             ChatListView(chatService: chatService)
+        case .videoTemplates:
+            VideoTemplatesView()
         }
     }
 }

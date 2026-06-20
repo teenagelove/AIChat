@@ -8,29 +8,45 @@
 import SwiftUI
 
 struct VideoGenCardView: View {
+
+    // MARK: - Properties
+
+    private let action: (() -> Void)?
+
+    // MARK: - Init
+
+    init(action: (() -> Void)? = nil) {
+        self.action = action
+    }
+
+    // MARK: - Body
+
     var body: some View {
-        VStack {
-            VStack(alignment: .leading) {
-                iconContainer
+        Button { action?() } label: {
+            VStack {
+                VStack(alignment: .leading) {
+                    iconContainer
 
-                title
+                    title
 
-                description
+                    description
+                }
+                .padding(.horizontal, 16)
+
+                readyButton
+                    .padding(.top, 116)
             }
-            .padding(.horizontal, 16)
-
-            readyButton
-                .padding(.top, 116)
+            .padding(.top, 24)
+            .padding(.bottom)
+            .frame(maxWidth: .infinity)
+            .background {
+                Image(.videoBackground)
+                    .resizable()
+                    .scaledToFill()
+            }
+            .clipShape(.rect(cornerRadius: 24))
         }
-        .padding(.top, 24)
-        .padding(.bottom)
-        .frame(maxWidth: .infinity)
-        .background {
-            Image(.videoBackground)
-                .resizable()
-                .scaledToFill()
-        }
-        .clipShape(.rect(cornerRadius: 24))
+        .buttonStyle(.plain)
     }
 }
 
