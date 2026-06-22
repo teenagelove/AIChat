@@ -29,10 +29,13 @@ struct PhotoSlotsView: View {
             }
         }
     }
+}
 
-    // MARK: - Private
+private extension PhotoSlotsView {
 
-    private func slotButton(index: Int) -> some View {
+    // MARK: - UI Components
+
+    func slotButton(index: Int) -> some View {
         Button {
             onSlotTap(index)
         } label: {

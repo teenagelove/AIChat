@@ -7,11 +7,18 @@
 
 import SwiftUI
 
+// MARK: - FeatureCardView
+
 struct FeatureCardView: View {
+
+    // MARK: - Properties
+
     let icon: ImageResource
     let titleKey: String
     let tagKeys: [String]
     private let action: (() -> Void)?
+
+    // MARK: - Init
 
     init(icon: ImageResource, titleKey: String, tagKeys: [String], action: (() -> Void)? = nil) {
         self.icon = icon
@@ -19,6 +26,8 @@ struct FeatureCardView: View {
         self.tagKeys = tagKeys
         self.action = action
     }
+
+    // MARK: - Body
 
     var body: some View {
         Button { action?() } label: {
@@ -69,6 +78,8 @@ private extension FeatureCardView {
         .opacity(0.7)
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     ImproveCardView()

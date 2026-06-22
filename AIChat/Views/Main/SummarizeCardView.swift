@@ -7,12 +7,21 @@
 
 import SwiftUI
 
+// MARK: - SummarizeCardView
+
 struct SummarizeCardView: View {
+
+    // MARK: - Properties
+
     private let action: (() -> Void)?
+
+    // MARK: - Init
 
     init(action: (() -> Void)? = nil) {
         self.action = action
     }
+
+    // MARK: - Body
 
     var body: some View {
         FeatureCardView(
@@ -26,6 +35,8 @@ struct SummarizeCardView: View {
         )
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     SummarizeCardView()

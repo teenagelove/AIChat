@@ -50,7 +50,7 @@ struct TypingIndicatorView: View {
 }
 
 private extension TypingIndicatorView {
-    
+
     // MARK: - UI Components
 
     func dot(index: Int, size: CGFloat) -> some View {

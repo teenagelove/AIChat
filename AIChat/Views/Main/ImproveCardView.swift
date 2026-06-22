@@ -7,12 +7,21 @@
 
 import SwiftUI
 
+// MARK: - ImproveCardView
+
 struct ImproveCardView: View {
+
+    // MARK: - Properties
+
     private let action: (() -> Void)?
+
+    // MARK: - Init
 
     init(action: (() -> Void)? = nil) {
         self.action = action
     }
+
+    // MARK: - Body
 
     var body: some View {
         FeatureCardView(
@@ -26,6 +35,8 @@ struct ImproveCardView: View {
         )
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     ImproveCardView()

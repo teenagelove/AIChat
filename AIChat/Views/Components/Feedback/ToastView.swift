@@ -41,15 +41,7 @@ struct ToastView: View {
         .padding(24)
         .frame(width: 240)
         .background(Color.card)
-        .clipShape(
-            UnevenRoundedRectangle(
-                topLeadingRadius: 24,
-                bottomLeadingRadius: 24,
-                bottomTrailingRadius: 24,
-                topTrailingRadius: 24
-            )
-        )
-
+        .clipShape(.rect(cornerRadius: 24))
     }
 }
 
