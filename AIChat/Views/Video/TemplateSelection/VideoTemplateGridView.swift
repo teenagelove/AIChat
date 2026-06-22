@@ -46,3 +46,9 @@ struct VideoTemplateGridView: View {
 #Preview {
     VideoTemplateGridView(templates: VideoTemplate.mock)
 }
+
+// MARK: - Preview
+
+#Preview {
+    VideoTemplateGridView(templates: VideoTemplate.mock)
+}
