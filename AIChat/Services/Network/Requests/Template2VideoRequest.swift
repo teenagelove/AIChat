@@ -19,10 +19,16 @@ struct Template2VideoRequest {
     let quality: String?
 
     func buildMultipartRequest() throws -> URLRequest {
-        var components = URLComponents(string: "\(Constants.Dola.baseURL)\(Constants.PixVerse.basePath)/api/v1/template2video")!
+        guard var components = URLComponents(string: "\(Constants.Dola.baseURL)\(Constants.PixVerse.basePath)/api/v1/template2video") else {
+            throw URLError(.badURL)
+        }
         components.queryItems = baseQueryItems
 
-        var request = URLRequest(url: components.url!)
+        guard let url = components.url else {
+            throw URLError(.badURL)
+        }
+
+        var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("Bearer \(Constants.Dola.bearerToken)", forHTTPHeaderField: "Authorization")
 

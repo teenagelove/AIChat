@@ -22,10 +22,16 @@ extension NetworkRequest {
 extension NetworkRequest {
 
     func build() throws -> URLRequest {
-        var components = URLComponents(string: "\(Constants.Dola.baseURL)\(path)")!
+        guard var components = URLComponents(string: "\(Constants.Dola.baseURL)\(path)") else {
+            throw URLError(.badURL)
+        }
         components.queryItems = queryItems
 
-        var request = URLRequest(url: components.url!)
+        guard let url = components.url else {
+            throw URLError(.badURL)
+        }
+
+        var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
 
         for (key, value) in headers {
