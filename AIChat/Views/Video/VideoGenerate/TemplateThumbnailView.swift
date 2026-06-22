@@ -14,7 +14,11 @@ struct TemplateThumbnailView: View {
 
     // MARK: - Properties
 
-    let player: AVPlayer?
+    let previewURL: String
+
+    // MARK: - State
+
+    @State private var player: AVPlayer?
 
     // MARK: - Body
 
@@ -22,6 +26,8 @@ struct TemplateThumbnailView: View {
         Group {
             if let player {
                 VideoPlayer(player: player)
+                    .onAppear { player.play() }
+                    .onDisappear { player.pause() }
             } else {
                 Image(.imageMock)
                     .resizable()
@@ -29,12 +35,20 @@ struct TemplateThumbnailView: View {
             }
         }
         .clipShape(.rect(cornerRadius: 16))
+        .onAppear {
+            guard player == nil,
+                  let url = URL(string: previewURL),
+                  !previewURL.isEmpty
+            else { return }
+
+            player = AVPlayer(url: url)
+        }
     }
 }
 
 // MARK: - Preview
 
 #Preview {
-    TemplateThumbnailView(player: nil)
+    TemplateThumbnailView(previewURL: "")
         .frame(width: 300, height: 300)
 }
