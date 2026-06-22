@@ -14,12 +14,7 @@ struct TemplateThumbnailView: View {
 
     // MARK: - Properties
 
-    let previewURL: String
-
-    // MARK: - State
-
-    @State private var player: AVPlayer?
-    @State private var isLoading = false
+    let player: AVPlayer?
 
     // MARK: - Body
 
@@ -27,11 +22,6 @@ struct TemplateThumbnailView: View {
         Group {
             if let player {
                 VideoPlayer(player: player)
-                    .onAppear { player.play() }
-                    .onDisappear { player.pause() }
-            } else if isLoading {
-                CustomProgressView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
                 Image(.imageMock)
                     .resizable()
@@ -39,22 +29,12 @@ struct TemplateThumbnailView: View {
             }
         }
         .clipShape(.rect(cornerRadius: 16))
-        .onAppear {
-            guard player == nil,
-                  let url = URL(string: previewURL),
-                  !previewURL.isEmpty
-            else { return }
-
-            isLoading = true
-            player = AVPlayer(url: url)
-            isLoading = false
-        }
     }
 }
 
 // MARK: - Preview
 
 #Preview {
-    TemplateThumbnailView(previewURL: "")
+    TemplateThumbnailView(player: nil)
         .frame(width: 300, height: 300)
 }
