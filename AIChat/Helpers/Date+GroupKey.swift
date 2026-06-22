@@ -14,13 +14,17 @@ extension Date {
     var chatGroupKey: String {
         let calendar = Calendar.current
         if calendar.isDateInToday(self) {
-            return "Today"
+            return String(localized: "today")
         } else if calendar.isDateInYesterday(self) {
-            return "Yesterday"
+            return String(localized: "yesterday")
         } else {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MMMM d"
-            return formatter.string(from: self)
+            return Self.groupKeyFormatter.string(from: self)
         }
     }
+
+    private static let groupKeyFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM d"
+        return formatter
+    }()
 }

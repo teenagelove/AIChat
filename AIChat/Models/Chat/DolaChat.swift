@@ -18,8 +18,12 @@ struct DolaChat: Decodable, Identifiable {
     var id: String { chatId }
 
     var date: Date? {
+        Self.dateFormatter.date(from: updatedAt)
+    }
+
+    private static let dateFormatter: ISO8601DateFormatter = {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        return formatter.date(from: updatedAt)
-    }
+        return formatter
+    }()
 }
