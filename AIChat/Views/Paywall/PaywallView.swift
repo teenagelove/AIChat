@@ -41,13 +41,13 @@ struct PaywallView: View {
         }
         .alert(.paywallCloseTitle, isPresented: $viewModel.showCloseAlert) {
             Button(.paywallCloseOk) {
-                exit(0)
+                coordinator.popToRoot()
             }
             Button(.paywallCloseCancel, role: .cancel) {}
         } message: {
             Text(.paywallCloseMessage)
         }
-        .alert("Restore Purchases", isPresented: $viewModel.showRestoreAlert) {
+        .alert(String(localized: .restorePurchases), isPresented: $viewModel.showRestoreAlert) {
             Button(.paywallCloseOk) {}
         } message: {
             Text(viewModel.restoreAlertMessage)

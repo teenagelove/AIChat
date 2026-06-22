@@ -62,13 +62,15 @@ private extension PurchaseOptionsView {
         isSelected: Bool,
         action: @escaping () -> Void
     ) -> some View {
-        PlanOptionView(
-            title: title,
-            price: product.displayPrice,
-            badge: badge,
-            isSelected: isSelected
-        )
-        .onTapGesture(perform: action)
+        Button(action: action) {
+            PlanOptionView(
+                title: title,
+                price: product.displayPrice,
+                badge: badge,
+                isSelected: isSelected
+            )
+        }
+        .buttonStyle(.plain)
     }
 }
 
