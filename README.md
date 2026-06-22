@@ -31,9 +31,13 @@ An AI-powered chat application for iOS, built with **SwiftUI** and the **MVVM+C*
 
 <div align="center">
 
-| Paywall | Chat | Video | Error |
-|:---:|:---:|:---:|:---:|
-| <img src="AIChat/Resources/Assets/PayWall.gif" alt="Paywall" width="250"/> | <img src="AIChat/Resources/Assets/Chat.gif" alt="Chat" width="250"/> | <img src="AIChat/Resources/Assets/Video.gif" alt="Video" width="250"/> | <img src="AIChat/Resources/Assets/Error.mov" alt="Error" width="250"/> |
+| Paywall | Chat |
+|:---:|:---:|
+| <img src="AIChat/Resources/Assets/PayWall.gif" alt="Paywall" width="100%"/> | <img src="AIChat/Resources/Assets/Chat.gif" alt="Chat" width="100%"/> |
+
+| Video | Error |
+|:---:|:---:|
+| <img src="AIChat/Resources/Assets/Video.gif" alt="Video" width="100%"/> | <img src="AIChat/Resources/Assets/Error.gif" alt="Error" width="100%"/> |
 
 </div>
 
