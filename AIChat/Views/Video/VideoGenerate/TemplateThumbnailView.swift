@@ -16,19 +16,55 @@ struct TemplateThumbnailView: View {
 
     let previewURL: String
 
+    // MARK: - State
+
+    @State private var player: AVPlayer?
+    @State private var isLoading = false
+
     // MARK: - Body
 
     var body: some View {
-        if let url = URL(string: previewURL), !previewURL.isEmpty {
-            VideoPlayer(player: AVPlayer(url: url))
-                .aspectRatio(contentMode: .fit)
-                .clipShape(.rect(cornerRadius: 16))
-        } else {
-            Image(.imageMock)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .clipShape(.rect(cornerRadius: 16))
+        ZStack {
+            if let player {
+                VideoPlayer(player: player)
+                    .clipShape(.rect(cornerRadius: 16))
+            } else if isLoading {
+                Color(.card)
+                    .clipShape(.rect(cornerRadius: 16))
+                    .overlay {
+                        ProgressView()
+                            .tint(.white)
+                    }
+            } else {
+                Image(.imageMock)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .clipShape(.rect(cornerRadius: 16))
+            }
         }
+        .task(id: previewURL) {
+            await loadPlayer()
+        }
+    }
+}
+
+// MARK: - Private
+
+private extension TemplateThumbnailView {
+
+    func loadPlayer() async {
+        guard !previewURL.isEmpty, let url = URL(string: previewURL) else { return }
+        isLoading = true
+        let asset = AVURLAsset(url: url)
+        guard (try? await asset.load(.duration)) != nil else {
+            isLoading = false
+            return
+        }
+        let avPlayer = AVPlayer(url: url)
+        avPlayer.isMuted = true
+        player = avPlayer
+        isLoading = false
+        avPlayer.play()
     }
 }
 
