@@ -22,11 +22,4 @@ struct DolaChat: Decodable, Identifiable {
         formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         return formatter.date(from: updatedAt)
     }
-
-    enum CodingKeys: String, CodingKey {
-        case chatId = "chat_id"
-        case title
-        case updatedAt = "updated_at"
-        case lastMessagePreview = "last_message_preview"
-    }
 }

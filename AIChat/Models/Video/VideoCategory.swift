@@ -5,16 +5,25 @@
 //  Created by Danil Kazakov on 20.06.2026.
 //
 
+import Foundation
+
 // MARK: - VideoCategory
 
-enum VideoCategory: String, CaseIterable, Identifiable {
-    case popular = "Popular"
-    case funny = "Funny"
-    case sad = "Sad"
-    case trends = "Trends"
-    case drama = "Drama"
-    case romance = "Romance"
-    case horror = "Horror"
+struct VideoCategory: Identifiable, Hashable {
+    let id: String
+    let displayName: String
 
-    var id: String { rawValue }
+    init(id: String, displayName: String) {
+        self.id = id
+        self.displayName = displayName
+    }
+
+    init(rawValue: String) {
+        self.id = rawValue
+        if let emojiRange = rawValue.range(of: " ") {
+            self.displayName = String(rawValue[emojiRange.upperBound...])
+        } else {
+            self.displayName = rawValue
+        }
+    }
 }
