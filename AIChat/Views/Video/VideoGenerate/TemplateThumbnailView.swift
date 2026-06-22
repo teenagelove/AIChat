@@ -20,7 +20,8 @@ struct TemplateThumbnailView: View {
 
     var body: some View {
         if let url = URL(string: previewURL), !previewURL.isEmpty {
-            VideoPlayerContainer(url: url)
+            VideoPlayer(player: AVPlayer(url: url))
+                .id(previewURL)
                 .clipShape(.rect(cornerRadius: 16))
         } else {
             Image(.imageMock)
@@ -28,36 +29,6 @@ struct TemplateThumbnailView: View {
                 .aspectRatio(contentMode: .fill)
                 .clipShape(.rect(cornerRadius: 16))
         }
-    }
-}
-
-// MARK: - VideoPlayerContainer
-
-private struct VideoPlayerContainer: UIViewControllerRepresentable {
-
-    let url: URL
-
-    func makeUIViewController(context: Context) -> AVPlayerViewController {
-        let controller = AVPlayerViewController()
-        let player = AVPlayer(url: url)
-        controller.player = player
-        controller.showsPlaybackControls = false
-        controller.videoGravity = .resizeAspect
-
-        NotificationCenter.default.addObserver(
-            forName: .AVPlayerItemDidPlayToEndTime,
-            object: player.currentItem,
-            queue: .main
-        ) { _ in
-            player.seek(to: .zero)
-            player.play()
-        }
-
-        return controller
-    }
-
-    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
-        uiViewController.player?.play()
     }
 }
 
