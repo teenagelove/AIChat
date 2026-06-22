@@ -8,6 +8,7 @@
   <img src="https://img.shields.io/badge/MVVM+C-Architecture-orange?logo=swift&logoColor=white" alt="MVVM+C Architecture"/>
   <img src="https://img.shields.io/badge/Structured_Concurrency-5856D6?logo=swift&logoColor=white" alt="Structured Concurrency"/>
   <img src="https://img.shields.io/badge/Apphud-SDK-FF6B6B?logo=apple&logoColor=white" alt="Apphud SDK"/>
+  <img src="https://img.shields.io/badge/StoreKit-2-007AFF?logo=apple&logoColor=white" alt="StoreKit 2"/>
   <img src="https://img.shields.io/badge/Lottie-00DDB3?logo=lottiefiles&logoColor=white" alt="Lottie"/>
   <img src="https://img.shields.io/badge/PixVerse-API-9B59B6?logo=video&logoColor=white" alt="PixVerse API"/>
   <img src="https://img.shields.io/badge/Conventional_Commits-FE5196?logo=git&logoColor=white" alt="Conventional Commits"/>
