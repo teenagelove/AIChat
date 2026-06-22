@@ -19,7 +19,7 @@ struct TemplateThumbnailView: View {
     // MARK: - Body
 
     var body: some View {
-        if let url = URL(string: previewURL) {
+        if let url = URL(string: previewURL), !previewURL.isEmpty {
             VideoPlayer(player: AVPlayer(url: url))
                 .aspectRatio(contentMode: .fit)
                 .clipShape(.rect(cornerRadius: 16))

@@ -79,7 +79,7 @@ struct VideoTemplatesView: View {
         }
         .onReceive(viewModel.$templateToNavigate) { template in
             guard let template else { return }
-            coordinator.navigate(to: .videoGenerate(template))
+            coordinator.navigate(to: .videoGenerate(template, viewModel.allTemplates))
             viewModel.resetNavigation()
         }
         .alert(.photoAccessTitle, isPresented: $viewModel.isShowingPermissionAlert) {

@@ -13,6 +13,6 @@ enum Screen: Hashable {
     case chat
     case chatList
     case videoTemplates
-    case videoGenerate(VideoTemplate)
+    case videoGenerate(VideoTemplate, [VideoTemplate])
     case resultVideoGen
 }

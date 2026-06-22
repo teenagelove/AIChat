@@ -74,8 +74,8 @@ private extension AIChatApp {
             ChatListView(chatService: chatService)
         case .videoTemplates:
             VideoTemplatesView(videoService: videoService)
-        case .videoGenerate(let template):
-            VideoGenerateView(template: template, videoService: videoService)
+        case .videoGenerate(let template, let allTemplates):
+            VideoGenerateView(template: template, allTemplates: allTemplates, videoService: videoService)
         case .resultVideoGen:
             ResultVideoGenView(
                 viewModel: VideoGenerateViewModel(

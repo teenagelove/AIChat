@@ -37,7 +37,7 @@ final class VideoTemplatesViewModel: ObservableObject {
     // MARK: - Private
 
     private var pendingTemplate: VideoTemplate?
-    private var allTemplates: [VideoTemplate] = []
+    var allTemplates: [VideoTemplate] = []
 
     // MARK: - Computed
 
