@@ -55,11 +55,14 @@ struct AIChatApp: App {
             .preferredColorScheme(.dark)
         }
     }
+}
 
-    // MARK: - Private
+private extension AIChatApp {
+
+    // MARK: - Navigation
 
     @ViewBuilder
-    private func destination(for screen: Screen) -> some View {
+    func destination(for screen: Screen) -> some View {
         switch screen {
         case .main:
             MainView()
