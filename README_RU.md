@@ -31,9 +31,9 @@ AI-чат приложение для iOS, построенное на **SwiftUI
 
 <div align="center">
 
-| Главный экран | Чат | Видео шаблоны |
-|:---:|:---:|:---:|
-| <img src="AIChat/Resources/Assets.xcassets/AppIcon.appiconset/screen.png" alt="Главный экран" width="250"/> | <img src="AIChat/Resources/Assets.xcassets/AppIcon.appiconset/screen.png" alt="Чат" width="250"/> | <img src="AIChat/Resources/Assets.xcassets/AppIcon.appiconset/screen.png" alt="Видео шаблоны" width="250"/> |
+| Paywall | Чат | Видео | Ошибка |
+|:---:|:---:|:---:|:---:|
+| <img src="AIChat/Resources/Assets/PayWall.gif" alt="Paywall" width="250"/> | <img src="AIChat/Resources/Assets/Chat.gif" alt="Чат" width="250"/> | <img src="AIChat/Resources/Assets/Video.gif" alt="Видео" width="250"/> | <img src="AIChat/Resources/Assets/Error.mov" alt="Ошибка" width="250"/> |
 
 </div>
 
