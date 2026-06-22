@@ -41,7 +41,7 @@ struct PaywallView: View {
         }
         .alert(.paywallCloseTitle, isPresented: $viewModel.showCloseAlert) {
             Button(.paywallCloseOk) {
-                coordinator.popToRoot()
+                exit(0)
             }
             Button(.paywallCloseCancel, role: .cancel) {}
         } message: {
