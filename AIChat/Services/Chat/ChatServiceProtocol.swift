@@ -5,8 +5,6 @@
 //  Created by Danil Kazakov on 20.06.2026.
 //
 
-import Foundation
-
 // MARK: - ChatServiceProtocol
 
 protocol ChatServiceProtocol {

@@ -11,7 +11,7 @@ import Foundation
 
 final class ChatService: ChatServiceProtocol {
 
-    // MARK: - Properties
+    // MARK: - Dependencies
 
     private let session = URLSession.shared
     private let decoder: JSONDecoder = {

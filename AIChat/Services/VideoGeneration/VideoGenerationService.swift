@@ -58,12 +58,15 @@ final class VideoGenerationService: VideoGenerationServiceProtocol {
         try validateResponse(response)
         return try decoder.decode(PixverseGenerationStatusResponse.self, from: data)
     }
+}
 
-    // MARK: - Private
+private extension VideoGenerationService {
 
-    private func validateResponse(_ response: URLResponse) throws {
+    // MARK: - Validation
+
+    func validateResponse(_ response: URLResponse) throws {
         guard let http = response as? HTTPURLResponse,
-              (200...299).contains(http.statusCode) else {
+              (200..<300).contains(http.statusCode) else {
             throw URLError(.badServerResponse)
         }
     }
