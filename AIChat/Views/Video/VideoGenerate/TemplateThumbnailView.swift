@@ -39,13 +39,26 @@ private struct VideoPlayerContainer: UIViewControllerRepresentable {
 
     func makeUIViewController(context: Context) -> AVPlayerViewController {
         let controller = AVPlayerViewController()
-        controller.player = AVPlayer(url: url)
+        let player = AVPlayer(url: url)
+        controller.player = player
         controller.showsPlaybackControls = false
         controller.videoGravity = .resizeAspect
+
+        NotificationCenter.default.addObserver(
+            forName: .AVPlayerItemDidPlayToEndTime,
+            object: player.currentItem,
+            queue: .main
+        ) { _ in
+            player.seek(to: .zero)
+            player.play()
+        }
+
         return controller
     }
 
-    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {}
+    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
+        uiViewController.player?.play()
+    }
 }
 
 // MARK: - Preview
