@@ -34,7 +34,7 @@ final class ChatService: ChatServiceProtocol {
             locale: locale
         ).build()
         let (data, response) = try await session.data(for: request)
-        try validateResponse(response)
+        try HTTPResponseValidator.validate(response)
         return try decoder.decode(DolaMessageResponse.self, from: data)
     }
 
@@ -51,7 +51,7 @@ final class ChatService: ChatServiceProtocol {
             offset: offset
         ).build()
         let (data, response) = try await session.data(for: request)
-        try validateResponse(response)
+        try HTTPResponseValidator.validate(response)
         return try decoder.decode([DolaChatMessage].self, from: data)
     }
 
@@ -66,20 +66,7 @@ final class ChatService: ChatServiceProtocol {
             offset: offset
         ).build()
         let (data, response) = try await session.data(for: request)
-        try validateResponse(response)
+        try HTTPResponseValidator.validate(response)
         return try decoder.decode([DolaChat].self, from: data)
-    }
-}
-
-private extension ChatService {
-
-    // MARK: - Validation
-
-    func validateResponse(_ response: URLResponse) throws {
-        guard let httpResponse = response as? HTTPURLResponse,
-              (200..<300).contains(httpResponse.statusCode)
-        else {
-            throw URLError(.badServerResponse)
-        }
     }
 }

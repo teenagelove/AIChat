@@ -29,7 +29,7 @@ final class VideoGenerationService: VideoGenerationServiceProtocol {
     func getTemplates() async throws -> [VideoTemplate] {
         let request = try GetTemplatesRequest(appId: Constants.Dola.appId).build()
         let (data, response) = try await session.data(for: request)
-        try validateResponse(response)
+        try HTTPResponseValidator.validate(response)
         let decoded = try decoder.decode(TemplatesResponse.self, from: data)
         return decoded.templates
     }
@@ -46,7 +46,7 @@ final class VideoGenerationService: VideoGenerationServiceProtocol {
             quality: quality
         ).buildMultipartRequest()
         let (data, response) = try await session.data(for: request)
-        try validateResponse(response)
+        try HTTPResponseValidator.validate(response)
         return try decoder.decode(PixverseGenerationResponse.self, from: data)
     }
 
@@ -55,19 +55,7 @@ final class VideoGenerationService: VideoGenerationServiceProtocol {
     func getGenerationStatus(videoId: Int) async throws -> PixverseGenerationStatusResponse {
         let request = try GetVideoStatusRequest(videoId: videoId).build()
         let (data, response) = try await session.data(for: request)
-        try validateResponse(response)
+        try HTTPResponseValidator.validate(response)
         return try decoder.decode(PixverseGenerationStatusResponse.self, from: data)
-    }
-}
-
-private extension VideoGenerationService {
-
-    // MARK: - Validation
-
-    func validateResponse(_ response: URLResponse) throws {
-        guard let http = response as? HTTPURLResponse,
-              (200..<300).contains(http.statusCode) else {
-            throw URLError(.badServerResponse)
-        }
     }
 }
