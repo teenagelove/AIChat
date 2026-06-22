@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVKit
 
 // MARK: - TemplateThumbnailView
 
@@ -18,10 +19,16 @@ struct TemplateThumbnailView: View {
     // MARK: - Body
 
     var body: some View {
-        Image(.imageMock)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .clipShape(.rect(cornerRadius: 16))
+        if let url = URL(string: previewURL) {
+            VideoPlayer(player: AVPlayer(url: url))
+                .aspectRatio(contentMode: .fit)
+                .clipShape(.rect(cornerRadius: 16))
+        } else {
+            Image(.imageMock)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .clipShape(.rect(cornerRadius: 16))
+        }
     }
 }
 

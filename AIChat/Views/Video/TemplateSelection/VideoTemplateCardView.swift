@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVKit
 
 // MARK: - VideoTemplateCardView
 
@@ -30,9 +31,14 @@ struct VideoTemplateCardView: View {
     var body: some View {
         Button { action?() } label: {
             ZStack(alignment: .bottom) {
-                Image(.imageMock)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
+                if let url = URL(string: previewURL) {
+                    VideoPlayer(player: AVPlayer(url: url))
+                        .aspectRatio(contentMode: .fill)
+                } else {
+                    Image(.imageMock)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                }
 
                 LinearGradient(
                     colors: [
