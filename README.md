@@ -174,7 +174,7 @@ This project uses **Swift Package Manager** for dependency management.
 
    Select a simulator or device and press `Cmd + R` to build and run the project.
 
-### Schemes
+### ⚙️ Schemes
 
 The project includes two schemes for different use cases:
 
