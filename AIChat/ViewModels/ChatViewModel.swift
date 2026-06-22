@@ -43,8 +43,12 @@ final class ChatViewModel: ObservableObject {
     // MARK: - Actions
 
     func pasteFromClipboard() {
-        guard let string = UIPasteboard.general.string else { return }
-        messageText = string
+        if let data = UIPasteboard.general.data(forPasteboardType: "public.utf8-plain-text"),
+           let string = String(data: data, encoding: .utf8) {
+            messageText = string
+        } else if let string = UIPasteboard.general.string {
+            messageText = string
+        }
     }
 
     func sendMessage() {
