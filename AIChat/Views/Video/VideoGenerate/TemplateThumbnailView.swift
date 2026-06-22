@@ -16,56 +16,36 @@ struct TemplateThumbnailView: View {
 
     let previewURL: String
 
-    // MARK: - State
-
-    @State private var player: AVPlayer?
-    @State private var isLoading = false
-
     // MARK: - Body
 
     var body: some View {
-        ZStack {
-            if let player {
-                VideoPlayer(player: player)
-                    .clipShape(.rect(cornerRadius: 16))
-            } else if isLoading {
-                Color(.card)
-                    .clipShape(.rect(cornerRadius: 16))
-                    .overlay {
-                        ProgressView()
-                            .tint(.white)
-                    }
-            } else {
-                Image(.imageMock)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .clipShape(.rect(cornerRadius: 16))
-            }
-        }
-        .task(id: previewURL) {
-            await loadPlayer()
+        if let url = URL(string: previewURL), !previewURL.isEmpty {
+            VideoPlayerContainer(url: url)
+                .clipShape(.rect(cornerRadius: 16))
+        } else {
+            Image(.imageMock)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .clipShape(.rect(cornerRadius: 16))
         }
     }
 }
 
-// MARK: - Private
+// MARK: - VideoPlayerContainer
 
-private extension TemplateThumbnailView {
+private struct VideoPlayerContainer: UIViewControllerRepresentable {
 
-    func loadPlayer() async {
-        guard !previewURL.isEmpty, let url = URL(string: previewURL) else { return }
-        isLoading = true
-        let asset = AVURLAsset(url: url)
-        guard (try? await asset.load(.duration)) != nil else {
-            isLoading = false
-            return
-        }
-        let avPlayer = AVPlayer(url: url)
-        avPlayer.isMuted = true
-        player = avPlayer
-        isLoading = false
-        avPlayer.play()
+    let url: URL
+
+    func makeUIViewController(context: Context) -> AVPlayerViewController {
+        let controller = AVPlayerViewController()
+        controller.player = AVPlayer(url: url)
+        controller.showsPlaybackControls = false
+        controller.videoGravity = .resizeAspect
+        return controller
     }
+
+    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {}
 }
 
 // MARK: - Preview
