@@ -23,6 +23,7 @@ struct TemplateCarouselView: View {
             ForEach(Array(templates.enumerated()), id: \.element.id) { index, template in
                 TemplateThumbnailView(previewURL: template.previewLarge)
                     .tag(index)
+                    .padding()
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))

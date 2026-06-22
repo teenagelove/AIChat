@@ -16,18 +16,38 @@ struct TemplateThumbnailView: View {
 
     let previewURL: String
 
+    // MARK: - State
+
+    @State private var player: AVPlayer?
+    @State private var isLoading = false
+
     // MARK: - Body
 
     var body: some View {
-        if let url = URL(string: previewURL), !previewURL.isEmpty {
-            VideoPlayer(player: AVPlayer(url: url))
-                .id(previewURL)
-                .clipShape(.rect(cornerRadius: 16))
-        } else {
-            Image(.imageMock)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .clipShape(.rect(cornerRadius: 16))
+        Group {
+            if let player {
+                VideoPlayer(player: player)
+                    .onAppear { player.play() }
+                    .onDisappear { player.pause() }
+            } else if isLoading {
+                CustomProgressView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                Image(.imageMock)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            }
+        }
+        .clipShape(.rect(cornerRadius: 16))
+        .onAppear {
+            guard player == nil,
+                  let url = URL(string: previewURL),
+                  !previewURL.isEmpty
+            else { return }
+
+            isLoading = true
+            player = AVPlayer(url: url)
+            isLoading = false
         }
     }
 }
