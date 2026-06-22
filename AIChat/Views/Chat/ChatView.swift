@@ -26,32 +26,27 @@ struct ChatView: View {
     // MARK: - Body
 
     var body: some View {
-        ZStack {
-            Color.backgroundClr
-                .ignoresSafeArea(edges: .bottom)
-
-            VStack(spacing: 0) {
-                if viewModel.messages.isEmpty {
-                    ChatEmptyStateView()
-                        .frame(maxHeight: .infinity)
-                } else {
-                    messageList
-                }
+        VStack(spacing: 0) {
+            if viewModel.messages.isEmpty {
+                ChatEmptyStateView()
+                    .frame(maxHeight: .infinity)
+            } else {
+                messageList
             }
-            .safeAreaInset(edge: .bottom) {
-                ChatInputBar(
-                    text: $viewModel.messageText,
-                    isInputFocused: $isInputFocused,
-                    hasText: viewModel.hasText,
-                    onImport: { viewModel.pasteFromClipboard() },
-                    onSend: { viewModel.sendMessage() }
-                )
-                .padding(.horizontal, 16)
-                .padding(.bottom, 8)
-            }
-
-            toastOverlay
         }
+        .safeAreaInset(edge: .bottom) {
+            ChatInputBar(
+                text: $viewModel.messageText,
+                isInputFocused: $isInputFocused,
+                hasText: viewModel.hasText,
+                onImport: { viewModel.pasteFromClipboard() },
+                onSend: { viewModel.sendMessage() }
+            )
+            .padding(.horizontal, 16)
+            .padding(.bottom, 8)
+        }
+        .overlay { toastOverlay }
+        .background(Color.backgroundClr.ignoresSafeArea(edges: .bottom))
         .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -73,7 +68,7 @@ struct ChatView: View {
                         Text(.chatTitle)
                             .font(.semiBold20)
 
-                        Text(.chatDate)
+                        Text(Date.now.chatDateFormatted)
                             .font(.regular14)
                             .foregroundStyle(.white.opacity(0.3))
                     }
@@ -98,17 +93,12 @@ private extension ChatView {
     // MARK: - UI Components
 
     var toastOverlay: some View {
-        Group {
-            if let toast = viewModel.toast {
-                VStack {
-                    Spacer()
-                    ToastView(message: toast.message, isSuccess: toast.isSuccess)
-                        .padding(.bottom, 100)
-                }
-                .transition(.move(edge: .bottom).combined(with: .opacity))
-                .animation(.easeInOut(duration: 0.3), value: viewModel.toast != nil)
-            }
-        }
+        ToastView(
+            message: viewModel.toast?.message ?? "",
+            isSuccess: viewModel.toast?.isSuccess ?? true
+        )
+        .opacity(viewModel.toast != nil ? 1 : 0)
+        .animation(.easeInOut(duration: 0.3), value: viewModel.toast != nil)
     }
 
     var messageList: some View {
@@ -132,9 +122,7 @@ private extension ChatView {
                         .id(Constants.IDs.loadingIndicator)
                     }
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 16)
-                .padding(.bottom, 16)
+                .padding()
             }
             .onChange(of: viewModel.messages.count) { _ in
                 withAnimation {

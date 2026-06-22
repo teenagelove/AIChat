@@ -16,5 +16,7 @@
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need access to your photos to create AI videos</string>
+	<key>UIDesignRequiresCompatibility</key>
+	<true/>
 </dict>
 </plist>

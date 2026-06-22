@@ -27,4 +27,14 @@ extension Date {
         formatter.dateFormat = "MMMM d"
         return formatter
     }()
+
+    var chatDateFormatted: String {
+        Self.chatDateFormatter.string(from: self)
+    }
+
+    private static let chatDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        return formatter
+    }()
 }
