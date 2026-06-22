@@ -49,6 +49,7 @@ struct ToastView: View {
                 topTrailingRadius: 24
             )
         )
+
     }
 }
 
