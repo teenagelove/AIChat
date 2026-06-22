@@ -64,11 +64,13 @@ private extension MainView {
                 }
 
                 VStack(spacing: 8) {
-                    ImproveCardView()
-                        .onTapGesture { isShowingNotImplemented = true }
+                    ImproveCardView {
+                        isShowingNotImplemented = true
+                    }
 
-                    SummarizeCardView()
-                        .onTapGesture { isShowingNotImplemented = true }
+                    SummarizeCardView {
+                        isShowingNotImplemented = true
+                    }
                 }
             }
         }

@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct SummarizeCardView: View {
+    private let action: (() -> Void)?
+
+    init(action: (() -> Void)? = nil) {
+        self.action = action
+    }
+
     var body: some View {
         FeatureCardView(
             icon: .promptAIco,
@@ -15,7 +21,8 @@ struct SummarizeCardView: View {
             tagKeys: [
                 String(localized: .summarize),
                 String(localized: .keyPoints)
-            ]
+            ],
+            action: action
         )
     }
 }

@@ -11,21 +11,32 @@ struct FeatureCardView: View {
     let icon: ImageResource
     let titleKey: String
     let tagKeys: [String]
+    private let action: (() -> Void)?
+
+    init(icon: ImageResource, titleKey: String, tagKeys: [String], action: (() -> Void)? = nil) {
+        self.icon = icon
+        self.titleKey = titleKey
+        self.tagKeys = tagKeys
+        self.action = action
+    }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            iconView
-                .padding(.bottom, 23)
+        Button { action?() } label: {
+            VStack(alignment: .leading, spacing: 0) {
+                iconView
+                    .padding(.bottom, 23)
 
-            Text(LocalizedStringKey(titleKey))
-                .padding(.bottom, 8)
+                Text(LocalizedStringKey(titleKey))
+                    .padding(.bottom, 8)
 
-            tagsView
+                tagsView
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(.card)
+            .clipShape(.rect(cornerRadius: 24))
         }
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(.card)
-        .clipShape(.rect(cornerRadius: 24))
+        .buttonStyle(.plain)
     }
 }
 

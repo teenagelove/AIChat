@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct ImproveCardView: View {
+    private let action: (() -> Void)?
+
+    init(action: (() -> Void)? = nil) {
+        self.action = action
+    }
+
     var body: some View {
         FeatureCardView(
             icon: .magicPencilAIco,
@@ -15,7 +21,8 @@ struct ImproveCardView: View {
             tagKeys: [
                 String(localized: .rewrite),
                 String(localized: .fixGrammar)
-            ]
+            ],
+            action: action
         )
     }
 }

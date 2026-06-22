@@ -14,16 +14,19 @@ struct VideoTemplatesView: View {
     // MARK: - Dependencies
 
     @EnvironmentObject private var coordinator: Coordinator
-    @State private var selectedCategory: VideoCategory = .popular
+    @StateObject private var viewModel = VideoTemplatesViewModel()
 
     // MARK: - Body
 
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
-                CategoryTabsView(selectedCategory: $selectedCategory)
+                CategoryTabsView(selectedCategory: $viewModel.selectedCategory)
 
-                VideoTemplateGridView(templates: filteredTemplates)
+                VideoTemplateGridView(
+                    templates: viewModel.filteredTemplates,
+                    onTemplateTap: { _ in viewModel.isShowingPermissionAlert = true }
+                )
             }
             .padding(.horizontal, 16)
             .padding(.top, 24)
@@ -57,15 +60,14 @@ struct VideoTemplatesView: View {
                 }
             }
         }
-    }
-}
-
-private extension VideoTemplatesView {
-
-    // MARK: - Properties
-
-    var filteredTemplates: [VideoTemplate] {
-        VideoTemplate.mock.filter { $0.category == selectedCategory }
+        .alert(.photoAccessTitle, isPresented: $viewModel.isShowingPermissionAlert) {
+            Button(.cancel, role: .cancel) {
+                coordinator.goBack()
+            }
+            Button(.allow) { viewModel.requestPhotoAccess() }
+        } message: {
+            Text(.photoAccessMessage)
+        }
     }
 }
 

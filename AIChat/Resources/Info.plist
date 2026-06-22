@@ -14,5 +14,7 @@
 		<key>UIColorName</key>
 		<string>backgroundClr</string>
 	</dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photos to create AI videos</string>
 </dict>
 </plist>

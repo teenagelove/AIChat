@@ -14,6 +14,14 @@ struct VideoTemplateGridView: View {
     // MARK: - Properties
 
     let templates: [VideoTemplate]
+    let onTemplateTap: ((VideoTemplate) -> Void)?
+
+    // MARK: - Init
+
+    init(templates: [VideoTemplate], onTemplateTap: ((VideoTemplate) -> Void)? = nil) {
+        self.templates = templates
+        self.onTemplateTap = onTemplateTap
+    }
 
     // MARK: - Body
 
@@ -25,7 +33,8 @@ struct VideoTemplateGridView: View {
             ForEach(templates) { template in
                 VideoTemplateCardView(
                     title: template.title,
-                    image: template.image
+                    image: template.image,
+                    action: { onTemplateTap?(template) }
                 )
             }
         }
