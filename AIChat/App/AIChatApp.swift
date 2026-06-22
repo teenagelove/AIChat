@@ -18,6 +18,7 @@ struct AIChatApp: App {
     @StateObject private var subscriptionService: SubscriptionService
     @StateObject private var paywallViewModel: PaywallViewModel
     private let chatService = ChatService()
+    private let videoService = VideoGenerationService()
 
     // MARK: - Init
 
@@ -69,7 +70,17 @@ struct AIChatApp: App {
         case .chatList:
             ChatListView(chatService: chatService)
         case .videoTemplates:
-            VideoTemplatesView()
+            VideoTemplatesView(videoService: videoService)
+        case .videoGenerate(let template):
+            VideoGenerateView(template: template, videoService: videoService)
+        case .resultVideoGen:
+            ResultVideoGenView(
+                viewModel: VideoGenerateViewModel(
+                    template: VideoTemplate.mock[0],
+                    allTemplates: VideoTemplate.mock,
+                    videoService: videoService
+                )
+            )
         }
     }
 }

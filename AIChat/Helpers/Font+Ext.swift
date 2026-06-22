@@ -29,10 +29,11 @@ extension Font {
 
     static let semiBold14 = Font.custom("Inter28pt-SemiBold", size: 14)
     static let semiBold16 = Font.custom("Inter28pt-SemiBold", size: 16)
+    static let semiBold18 = Font.custom("Inter28pt-SemiBold", size: 18)
     static let semiBold20 = Font.custom("Inter28pt-SemiBold", size: 20)
 
     // MARK: - Bold
-
+    
     static let bold28 = Font.custom("Inter28pt-Bold", size: 28)
     static let bold34 = Font.custom("Inter28pt-Bold", size: 34)
 }

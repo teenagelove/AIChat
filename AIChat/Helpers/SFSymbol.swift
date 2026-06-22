@@ -10,4 +10,6 @@
 enum SFSymbol {
     static let clockArrowCirclePath = "clock.arrow.circlepath"
     static let arrowClockwise = "arrow.clockwise"
+    static let plus = "plus"
+    static let checkmark = "checkmark"
 }

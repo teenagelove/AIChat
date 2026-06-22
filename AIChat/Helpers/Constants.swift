@@ -25,6 +25,12 @@ enum Constants {
         static let appId = "com.test.test"
     }
 
+    // MARK: - PixVerse
+
+    enum PixVerse {
+        static let basePath = "/pixverse"
+    }
+
     // MARK: - IDs
 
     enum IDs {
