@@ -170,6 +170,17 @@ This project uses **Swift Package Manager** for dependency management.
 
    Select a simulator or device and press `Cmd + R` to build and run the project.
 
+### Schemes
+
+The project includes two schemes for different use cases:
+
+| Scheme | Purpose | Subscriptions |
+|--------|---------|---------------|
+| `AIChat` | Production build | AppHud SDK (real or sandbox purchases) |
+| `AIChat-StoreKitTest` | Local testing | StoreKit Configuration file (no network) |
+
+To switch schemes, click the scheme selector in Xcode's toolbar and choose the desired scheme.
+
 ## 👥 Contributors
 
 - [Danil Kazakov](https://github.com/teenagelove) - Creator and maintainer
