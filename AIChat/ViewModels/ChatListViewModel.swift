@@ -31,25 +31,25 @@ final class ChatListViewModel: ObservableObject {
 
     private let chatService: any ChatServiceProtocol
 
-    // MARK: - Init
-
-    init(chatService: any ChatServiceProtocol) {
-        self.chatService = chatService
-    }
-
     // MARK: - Computed
 
     var sections: [ChatSection] {
         guard case .loaded(let chats) = state else { return [] }
-        let grouped = Dictionary(grouping: chats) { $0.date?.chatGroupKey ?? "Unknown" }
+        let grouped = Dictionary(grouping: chats) { $0.date?.chatGroupKey ?? String(localized: "unknown") }
         return grouped
             .map { ChatSection(title: $0.key, chats: $0.value) }
             .sorted { lhs, rhs in
-                let order = ["Today", "Yesterday"]
+                let order = [String(localized: "today"), String(localized: "yesterday")]
                 let lhsIndex = order.firstIndex(of: lhs.title) ?? order.count
                 let rhsIndex = order.firstIndex(of: rhs.title) ?? order.count
                 return lhsIndex != rhsIndex ? lhsIndex < rhsIndex : lhs.title > rhs.title
             }
+    }
+
+    // MARK: - Init
+
+    init(chatService: any ChatServiceProtocol) {
+        self.chatService = chatService
     }
 
     // MARK: - Actions

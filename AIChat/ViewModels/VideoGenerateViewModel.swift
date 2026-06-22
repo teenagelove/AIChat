@@ -111,7 +111,7 @@ final class VideoGenerateViewModel: ObservableObject {
         isShowingResult = true
 
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            generationState = .error("Failed to compress image")
+            generationState = .error(String(localized: .videoGenCompressError))
             return
         }
 
@@ -130,7 +130,7 @@ final class VideoGenerateViewModel: ObservableObject {
             if let url = statusResponse.videoUrl {
                 generationState = .success(url)
             } else {
-                generationState = .error("Video URL is missing")
+                generationState = .error(String(localized: .videoGenUrlMissing))
             }
         } catch {
             generationState = .error(error.localizedDescription)
@@ -170,24 +170,27 @@ final class VideoGenerateViewModel: ObservableObject {
         isShowingResult = false
         toastMessage = nil
     }
+}
 
-    // MARK: - Private
+private extension VideoGenerateViewModel {
 
-    private func hideToastAfterDelay() {
+    // MARK: - Private Methods
+
+    func hideToastAfterDelay() {
         Task {
             try? await Task.sleep(for: .seconds(2))
             toastMessage = nil
         }
     }
 
-    private func temporaryFileURL(_ data: Data) -> URL {
+    func temporaryFileURL(_ data: Data) -> URL {
         let tempDir = FileManager.default.temporaryDirectory
         let fileURL = tempDir.appendingPathComponent("video_\(UUID().uuidString).mp4")
         try? data.write(to: fileURL)
         return fileURL
     }
 
-    private func loadImage(for item: PhotosPickerItem) async -> UIImage? {
+    func loadImage(for item: PhotosPickerItem) async -> UIImage? {
         if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data) {
             return image
         }

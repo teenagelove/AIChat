@@ -8,6 +8,8 @@
 import Combine
 import StoreKit
 
+// MARK: - PaywallViewModel
+
 @MainActor
 final class PaywallViewModel: ObservableObject {
 
@@ -34,12 +36,6 @@ final class PaywallViewModel: ObservableObject {
 
     private let subscriptionService: any SubscriptionServiceProtocol
 
-    // MARK: - Init
-
-    init(subscriptionService: any SubscriptionServiceProtocol) {
-        self.subscriptionService = subscriptionService
-    }
-
     // MARK: - Computed
 
     var products: [Product] {
@@ -51,6 +47,12 @@ final class PaywallViewModel: ObservableObject {
 
     var hasPremiumAccess: Bool {
         subscriptionService.hasPremiumAccess
+    }
+
+    // MARK: - Init
+
+    init(subscriptionService: any SubscriptionServiceProtocol) {
+        self.subscriptionService = subscriptionService
     }
 
     // MARK: - Actions

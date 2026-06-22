@@ -6,7 +6,6 @@
 //
 
 import Combine
-import Foundation
 import SwiftUI
 
 // MARK: - ChatViewModel
@@ -25,20 +24,20 @@ final class ChatViewModel: ObservableObject {
 
     private let chatService: any ChatServiceProtocol
 
-    // MARK: - Properties
+    // MARK: - Private
 
     private var chatId: String?
-
-    // MARK: - Init
-
-    init(chatService: any ChatServiceProtocol) {
-        self.chatService = chatService
-    }
 
     // MARK: - Computed
 
     var hasText: Bool {
         !messageText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    // MARK: - Init
+
+    init(chatService: any ChatServiceProtocol) {
+        self.chatService = chatService
     }
 
     // MARK: - Actions
