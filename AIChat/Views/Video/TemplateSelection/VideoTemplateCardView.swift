@@ -18,6 +18,10 @@ struct VideoTemplateCardView: View {
     let previewURL: String
     private let action: (() -> Void)?
 
+    // MARK: - State
+
+    @State private var player: AVPlayer?
+
     // MARK: - Init
 
     init(title: String, previewURL: String, action: (() -> Void)? = nil) {
@@ -31,13 +35,13 @@ struct VideoTemplateCardView: View {
     var body: some View {
         Button { action?() } label: {
             ZStack(alignment: .bottom) {
-                if let url = URL(string: previewURL) {
-                    VideoPlayer(player: AVPlayer(url: url))
+                if let player = player {
+                    VideoPlayer(player: player)
                         .aspectRatio(contentMode: .fill)
+                        .disabled(true) // Disable player controls in grid
                 } else {
-                    Image(.imageMock)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
+                    Color(.card)
+                        .aspectRatio(1, contentMode: .fill)
                 }
 
                 LinearGradient(
@@ -56,6 +60,27 @@ struct VideoTemplateCardView: View {
             .clipShape(.rect(cornerRadius: 24))
         }
         .buttonStyle(.plain)
+        .task(id: previewURL) {
+            guard let url = URL(string: previewURL) else { return }
+            
+            try? await Task.sleep(for: .milliseconds(300))
+            if Task.isCancelled { return }
+            
+            let newPlayer = await Task.detached {
+                AVPlayer(url: url)
+            }.value
+            
+            if !Task.isCancelled {
+                newPlayer.isMuted = true
+                self.player = newPlayer
+                newPlayer.play()
+            }
+        }
+        .onDisappear {
+            player?.pause()
+            player?.replaceCurrentItem(with: nil)
+            player = nil
+        }
     }
 }
 

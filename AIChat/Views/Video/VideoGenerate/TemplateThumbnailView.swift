@@ -27,11 +27,15 @@ struct TemplateThumbnailView: View {
             if let player {
                 VideoPlayer(player: player)
                     .onAppear { player.play() }
-                    .onDisappear { player.pause() }
+                    .onDisappear {
+                        player.pause()
+                        player.replaceCurrentItem(with: nil)
+                        self.player = nil
+                    }
+                    .aspectRatio(1, contentMode: .fill)
             } else {
-                Image(.imageMock)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
+                Color(.card)
+                    .aspectRatio(1, contentMode: .fill)
             }
         }
         .clipShape(.rect(cornerRadius: 16))
