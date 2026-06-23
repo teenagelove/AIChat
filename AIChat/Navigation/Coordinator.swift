@@ -23,6 +23,7 @@ final class Coordinator: ObservableObject {
     }
 
     func goBack() {
+        guard !path.isEmpty else { return }
         path.removeLast()
     }
 
